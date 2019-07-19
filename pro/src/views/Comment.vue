@@ -7,6 +7,7 @@
 		  @click-left="onClickLeft"
 		 
 		/>
+		<div class="comment"></div>
 		<van-card
 		  
 		  title="订单编号："
@@ -37,6 +38,7 @@
 		},
 		methods:{
 			onClickLeft() {
+				this.$router.go(-1)
 
     		},
       		tap(){
@@ -47,5 +49,7 @@
 	}
 </script>
 <style>
-	
+	.comment{
+		margin-top:3rem
+	}
 </style>

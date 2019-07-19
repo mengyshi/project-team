@@ -1,6 +1,6 @@
 <template>
 	<div>	
-	<van-grid :column-num="5" square style="margin-top:20px ">
+	<van-grid :column-num="5" square >
 	  <van-grid-item class="list"
 	    v-for="(item,i) in list"
 	    :key="i"
@@ -8,17 +8,19 @@
 	    :text="item.txt"
 	    @click="tap(i)"/>
 	</van-grid>
-		<van-panel icon="manager
-" title="维也纳酒店>" status="支付中" style="margin-top:30px ">
-		  <div>
-		  	<p>1间，豪华套房</p>
-		  	<p>使用时间：</p>
-		  	<p>总价￥：</p>
-		  </div>
-		  <div slot="footer">
-		    <van-button size="small" type="danger" style="float:right">点击支付</van-button>
-		  </div>
-		</van-panel>
+		<div class="list">
+			<van-panel title="维也纳酒店>"  status="待支付">
+			  <div class="order-box">
+			  	<p>1间，豪华套房</p>
+			  	<p>使用时间：</p>
+			  	<p>总价￥：</p>
+			  </div>
+			  <div slot="footer" class="reorder">
+			    <van-button size="small" type="danger" >立即支付</van-button>
+			  </div>
+			</van-panel>
+			
+		</div>
 	
 	</div>	
 </template>
@@ -70,5 +72,13 @@
 
 </script>
 <style>
-	
+		#app{
+			text-align:left;
+			}
+			.order-box{
+			margin-left:20%;
+			}
+			.reorder{
+			float:right;	
+			}
 </style>
