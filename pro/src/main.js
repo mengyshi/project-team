@@ -9,7 +9,7 @@ import Vant from 'vant'
 import 'vant/lib/index.css';
 //图标库
 import 'vant/lib/icon/local.css';
-
+ import $ from 'zepto'
 // Vue.use(Icon);
 Vue.config.productionTip = false
 Vue.use(Vant)
@@ -17,11 +17,7 @@ Vue.use(Vant)
 new Vue({
   el: '#app',
   router,
-<<<<<<< HEAD
   store,
   components: { App },
-=======
-  components: { App},
->>>>>>> smy
   template: '<App/>'
 })
