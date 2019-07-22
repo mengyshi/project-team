@@ -43,9 +43,7 @@ import Birthday from "@/views/personalInfo/Birthday";
 import Hometown from "@/views/personalInfo/Hometown";
 
 import "vant/lib/index.css";
-
 Vue.use(Vant);
-
 import LoginC from "@/views/LoginC.vue";
 import LoginP from "@/views/LoginP.vue";
 import Register from "@/views/Register.vue";

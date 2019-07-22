@@ -15,7 +15,7 @@
       <div id="middle">
         <van-cell-group>
           <van-field
-            v-model="loginForm.username"
+            v-model="username"
             required
             clearable
             label="用户名"
@@ -23,13 +23,7 @@
             placeholder="请输入用户名"
             @click-right-icon="$toast('question')"
           />
-          <van-field
-            v-model="loginForm.password"
-            type="password"
-            label="密码"
-            placeholder="请输入密码"
-            required
-          />
+          <van-field v-model="password" type="password" label="密码" placeholder="请输入密码" required />
         </van-cell-group>
       </div>
 
@@ -41,7 +35,7 @@
           icon-size="12px"
         >记住密码</van-checkbox>
         <van-button type="primary" id="loginBtn" size="small" @click="loginc">登录</van-button>
-        <a href="#" id="forgetPwd">忘记密码</a>
+        <a href="./#/update" id="forgetPwd">忘记密码</a>
       </div>
     </div>
     <!-- middle   end-->
@@ -77,30 +71,35 @@ export default {
         wechatQrcodeHelper:
           "<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>"
       },
-      loginForm: {
-        username: "",
-        password: ""
-      }
+      username: "",
+      password: ""
     };
   },
   methods: {
     ...mapMutations(["changeLogin"]),
     loginc() {
-      let _this = this;
-      if (this.loginForm.username === "" || this.loginForm.password === "") {
+      if (this.username === "" || this.password === "") {
         alert("账号或密码不能为空");
       } else {
         axios({
-          url: "http://www.manman.com/api",
-          method: "post",
-          data: _this.loginForm
+          url: "http://10.8.157.41:8080/user/login",
+          params: {
+            username: this.username,
+            password: this.password
+          }
         })
-          .then(res => {
-            console.log(res.data);
-            // _this.userToken = "Bearer" + res.data.list.token;
-            // console.log(_this.userToken);
-            // console.log(res.data.list);
-            let arr = res.data.list;
+          .then(data => {
+            console.log(data);
+            if (data.status == 200) {
+              // if(){
+              //   this.$router.push({ path: "/index" });
+              // }else{
+              //   this.$toast("账号或密码输入错误")
+              // }
+              this.$router.push({ path: "/index" });
+            }
+
+            let arr = data.list;
             console.log(arr);
             let i;
             console.log(_this.loginForm.username);
@@ -109,10 +108,7 @@ export default {
             for (i in arr) {
               let username = arr[i].username;
               let password = arr[i].password;
-              if (
-                _this.loginForm.username == username &&
-                _this.loginForm.password == password
-              ) {
+              if (_this.username == username && _this.password == password) {
                 _this.$router.push("/index");
                 console.log("登录成功");
                 flag = true;
