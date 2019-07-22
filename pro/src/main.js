@@ -6,6 +6,10 @@ import router from './router'
 import store from './store'
 import Vant from 'vant'
 import 'vant/lib/index.css';
+//图标库
+import 'vant/lib/icon/local.css';
+
+// Vue.use(Icon);
 Vue.config.productionTip = false
 Vue.use(Vant)
 /* eslint-disable no-new */
