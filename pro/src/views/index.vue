@@ -17,18 +17,18 @@
 
 <script>
 import iscroll from "../assets/iscroll.js"
-var myscroll=new iscroll('section',{
-    click:true
-  })
-$(document).on('touchend',function(){
-    if(myscroll.y>50){
-      console.log('下拉刷新')
-    }
-    if(myscroll.y<myscroll.maxScrollY-50){
-      console.log('上拉加载')
+// var myscroll=new iscroll('section',{
+//     click:true
+//   })
+// $(document).on('touchend',function(){
+//     if(myscroll.y>50){
+//       console.log('下拉刷新')
+//     }
+//     if(myscroll.y<myscroll.maxScrollY-50){
+//       console.log('上拉加载')
       
-    }
-  })
+//     }
+//   })
 export default {
   name: "App",
   data() {
