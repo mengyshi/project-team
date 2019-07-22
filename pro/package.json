@@ -12,7 +12,6 @@
   "dependencies": {
     "axios": "^0.19.0",
     "n-zepto": "^1.2.0",
-    "v-tap": "^3.0.3",
     "vant": "^2.0.8",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
@@ -54,6 +53,7 @@
     "shelljs": "^0.7.6",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
+    "v-tap": "^3.0.3",
     "vant": "^2.0.9",
     "vue-loader": "^13.3.0",
     "vue-social-share": "0.0.3",

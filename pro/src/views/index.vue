@@ -15,6 +15,21 @@
 <script src="../assets/iscroll.js" type="text/javascript" charset="utf-8"></script> -->
 
 <script>
+
+//import iscroll from "../assets/iscroll.js"
+// var myscroll=new iscroll('section',{
+//     click:true
+//   })
+// $(document).on('touchend',function(){
+//     if(myscroll.y>50){
+//       console.log('下拉刷新')
+//     }
+//     if(myscroll.y<myscroll.maxScrollY-50){
+//       console.log('上拉加载')
+      
+//     }
+//   })
+
 // import iscroll from "../assets/iscroll.js";
 // var myscroll = new iscroll("section", {
 //   click: true
