@@ -46,8 +46,6 @@ import "vant/lib/index.css";
 
 Vue.use(Vant);
 
-import Vue from "vue";
-import Router from "vue-router";
 import LoginC from "@/views/LoginC.vue";
 import LoginP from "@/views/LoginP.vue";
 import Register from "@/views/Register.vue";
