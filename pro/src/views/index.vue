@@ -34,4 +34,5 @@ export default {
 .box {
   overflow: auto;
 }
+
 </style>
