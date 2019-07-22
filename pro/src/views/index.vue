@@ -3,8 +3,8 @@
     <van-tabbar v-model="active" :fixed="true">
       <van-tabbar-item icon="wap-home" to="/Recommend">推荐</van-tabbar-item>
       <van-tabbar-item icon="hot" to="">发现</van-tabbar-item>
-      <van-tabbar-item icon="orders-o">订单</van-tabbar-item>
-      <van-tabbar-item icon="user-circle-o">我的</van-tabbar-item>
+      <van-tabbar-item icon="orders-o" to="/order">订单</van-tabbar-item>
+      <van-tabbar-item icon="user-circle-o" to="/ownpage">我的</van-tabbar-item>
     </van-tabbar>
     <div class="box">
       <router-view />
