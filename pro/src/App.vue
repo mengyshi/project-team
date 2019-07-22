@@ -1,12 +1,8 @@
 <template>
   <div id="app">
-
     <div class="box">
       <router-view />
     </div>
-
-    <!-- <img src="./assets/logo.png"> -->
-
   </div>
 </template>
 
@@ -17,7 +13,8 @@ export default {
     return {
       active: 0
     };
-  }
+  },
+  name: "App"
 };
 </script>
 
@@ -31,6 +28,5 @@ export default {
 }
 .box {
   overflow: auto;
-
 }
 </style>
