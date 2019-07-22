@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div id="app">
     <div class="box">
       <router-view />
@@ -53,3 +54,7 @@ export default {
  
 }
 </style>
+=======
+  <h2>IIIIndex</h2>
+</template>
+>>>>>>> dev-mm
