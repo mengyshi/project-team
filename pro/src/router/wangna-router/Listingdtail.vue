@@ -2,15 +2,22 @@
   <div class="listing">
     <!-- 头部搜索 -->
     <div class="header-search">
-      <van-search
-        class="search"
-        placeholder="房源搜索"
-        v-model="value"
-        input-align="center"
-        left-icon="arrow-left"
-        background="#ffffff"
-        @click="searchBtn"
-      />
+      <van-row gutter='0'>
+        <van-col span="2">
+          <van-icon name="arrow-left" @click="searchBtn" />
+        </van-col>
+        <van-col span="22">
+          <van-search
+            class="search"
+            shape="round"
+            placeholder="房源搜索"
+            v-model="value"
+            input-align="center"
+            left-icon
+            background="#ffffff"
+          />
+        </van-col>
+      </van-row>
     </div>
     <!-- 选项卡 -->
     <div class="tab">
@@ -63,7 +70,7 @@ export default {
   },
   methods: {
     searchBtn() {
-      this.$router.go(-1)
+      this.$router.go(-1);
     },
     formatter(type, value) {
       if (type === "year") {
@@ -79,8 +86,8 @@ export default {
       Toast("save");
       this.address = e.province + "/" + e.city + "/" + e.county;
     },
-    searchEnd(){
-      this.$router.push('SearchEnd')
+    searchEnd() {
+      this.$router.push("SearchEnd");
     }
   },
   mounted() {
@@ -122,7 +129,7 @@ export default {
   border-radius: 10px;
   text-indent: 20px;
 }
-.searchBtn{
+.searchBtn {
   position: absolute;
   bottom: 40px;
   left: 0px;
