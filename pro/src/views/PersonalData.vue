@@ -16,35 +16,38 @@
 	<div id="content">
 			
 				<van-panel title="昵称" >
-				 <div class="content"><em>内容</em><span>&gt;</span></div>
+				 <div class="content"><em>用户名</em><span @click="tap('username')">&gt;</span></div>
 				</van-panel>
 			
 			
-				<van-panel title="性别" >
-					<div class="content"><em>内容</em><span>&gt;</span></div>
+				<van-panel title="性别">
+					<div class="content"><em>内容</em><span @click="tap('sex')">&gt;</span></div>
+				</van-panel>
+
+				<van-panel title="常用手机">
+					<div class="content"><em>内容</em><span @click="tap('telphone')">&gt;</span></div>
 				</van-panel>
 			
-				<van-panel title="出生日期" >
-					<div class="content"><em>内容</em><span>&gt;</span></div>
+			
+				<van-panel title="出生日期">
+					<div class="content"><em>内容</em><span @click="tap('birthday')">&gt;</span></div>
 				</van-panel>
 			
 				<van-panel title="身份证号码"  >
-					<div class="content"><em>内容</em><span>&gt;</span></div>
+					<div class="content"><em>411**************X</em><span @click="tap('idcard')">&gt;</span></div>
 				</van-panel>
 			
 				<van-panel title="故乡"   >
-					<div class="content"><em>内容</em><span>&gt;</span></div>
+					<div class="content"><em>内容</em><span @click="tap('hometown')">&gt;</span></div>
 				</van-panel>
 			
 				<van-panel title="所在城市"  >
-					<div class="content"><em>内容</em><span>&gt;</span></div>
+					<div class="content"><em>内容</em><span @click="tap('city')">&gt;</span></div>
 				</van-panel>
 			
 				<van-panel title="邮箱地址"  >
-					<div class="content"><em>内容</em><span>&gt;</span></div>
-				</van-panel>
-			
-			
+					<div class="content"><em>内容</em><span @click="tap('mail')">&gt;</span></div>
+				</van-panel>		
 		</div>
 
 	
@@ -62,6 +65,11 @@
 		methods:{
 			onClickLeft(){
 				this.$router.go(-1)
+			},
+			
+			tap(nextpath){
+				this.$router.push(""+nextpath);
+
 			}
 		}
 
@@ -82,7 +90,8 @@
 		justify-content: center;
 		align-items: center;
 		margin-top:3rem;
-		background:#00f;
+		background:url("http://img0.imgtn.bdimg.com/it/u=3656656606,232096928&fm=26&gp=0.jpg");
+		background-size:100% 11rem;
 		flex-direction: column;
 
 	}
@@ -91,7 +100,8 @@
 		display: block;
 		width:8rem;
 		height:8rem;
-		background: #0ff;
+		background:url("http://img3.imgtn.bdimg.com/it/u=4171914132,1957317625&fm=26&gp=0.jpg") no-repeat;
+		background-size:8rem 8rem;
 		border-radius: 50%;
 	}
 

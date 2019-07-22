@@ -2,7 +2,7 @@
 	<div>
 		<van-nav-bar
 		:fixed="true"
-		  title="收件地址"
+		  title="新增收件地址"
 		  left-arrow
 		  @click-left="onClickLeft"
 		 
@@ -10,14 +10,13 @@
 		<div class="add">
 			<van-address-edit
 			  :area-list="areaList"
-			  show-postal
 			  show-delete
+			  address-info
 			  show-set-default
 			  show-search-result
 			  :search-result="searchResult"
 			  @save="onSave"
-			  @delete="onDelete"
-			  
+			  @delete="onDelete"			  
 			/>
 		</div>
 		
@@ -30,20 +29,27 @@
 	  data() {
 	    return {
 	      areaList:area,
-	      searchResult: []
+	      searchResult: [],
+	      AddressInfo:{
+	      	id:1,
+	      	name:"张三",
+	      	tel:"15037663282"
+	      }
+	      
 	    }
 	  },
-
 	  methods: {
 	  	 onClickLeft(){
 	    	this.$router.go(-1);
 	    },
 
-	    onSave() {
-	      Toast('save');
+	    onSave(content) {
+	      console.log(content.addressDetail,content.tel,content.city,content.county,content.name,content.province);
+	      var area=""+content.province+content.city+content.county;
+	      console.log(area)
 	    },
 	    onDelete() {
-	      Toast('delete');
+	      
 	    },
 	    // onChangeDetail(val) {
 	    //   if (val) {

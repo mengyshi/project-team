@@ -125,6 +125,9 @@
 	  		this.$router.push("/personaldata")
 	  	},
 	  	clickList(i){
+	  		if(i==3){
+	  			this.$router.push("/collect")
+	  		}
 	  		if(i==7){
 	  			this.$router.push("/addresslist")
 	  		}
@@ -168,6 +171,8 @@
 		height:5rem;
 		background: #0ff;
 		border-radius: 50%;
+		background:url("http://img3.imgtn.bdimg.com/it/u=4171914132,1957317625&fm=26&gp=0.jpg") no-repeat;
+		background-size:5rem 5rem;
 	}
 
 </style>

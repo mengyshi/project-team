@@ -19,7 +19,7 @@
 	</div>
 </template>
 <script>
-
+  import axios from "axios"
 	export default {
   data() {
     return {
@@ -38,7 +38,6 @@
           address: '浙江省杭州市拱墅区莫干山路 50 号'
         }
       ],
-      
     }
   },
 
@@ -48,13 +47,43 @@
     },
 
     onEdit(item, index) {
-      Toast('编辑地址:' + index);
+      this.$router.push({path:"/editaddress",query:{index:item.id}})
     },
     onClickLeft(){
     	this.$router.go(-1);
-    }
+    },
 
-  }
+  },
+  mounted(){
+    axios({
+      url:"http://uvwvkr.natappfree.cc/set/adds.do",
+      method:"get",
+
+    }).then((data)=>{
+      
+      var lists=data.data.data;
+      var datas=[];
+      for(var i=0;i<lists.length;i++){
+        
+        var address=""+lists[i].area+lists[i].detailadds
+        var id=""+lists[i].id;
+        var list={id:id,name:lists[i].name,tel:lists[i].phone,address:address}
+       
+        datas.push(list);
+        
+      }
+       this.list=datas;
+  })
+}
+  // $.ajax({
+  //       url: 'http://q9ivr2.natappfree.cc/set/adds.do',
+  //       type: 'get',
+  //       dataType: 'json',
+  //       //data:{username:"zhangsan"},
+  //       success:function(data){
+  //         console.log(data)
+  //       }
+  //     })
 }
 </script>
 <style>

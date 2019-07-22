@@ -7,8 +7,8 @@
 			  	<p>使用时间：</p>
 			  	<p>总价￥：</p>
 			  </div>
-			  <div slot="footer" class="reorder">
-			    <van-button size="small" type="danger" >再次预定</van-button>
+			  <div slot="footer"  style="height:1.8rem;">
+			    <van-button size="small" type="danger" style="float:right" >再次预定</van-button>
 			  </div>
 			</van-panel>
 			
@@ -20,8 +20,8 @@
 			  	<p>使用时间：</p>
 			  	<p>总价￥：</p>
 			  </div>
-			  <div slot="footer" class="reorder">
-			    <van-button size="small" type="danger">再次预定</van-button>
+			   <div slot="footer"  style="height:1.8rem;">
+			    <van-button size="small" type="danger" style="float:right" >再次预定</van-button>
 			  </div>
 			</van-panel>
 			
@@ -47,9 +47,7 @@
 	.order-box{
 		margin-left:20%;
 	}
-	.reorder{
-		float:right;	
-	}
+	
 	.list{
 		margin:2rem 0;
 

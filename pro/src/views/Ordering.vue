@@ -1,7 +1,7 @@
 <template>
 	<div>	
 	<van-grid :column-num="5" square >
-	  <van-grid-item class="list"
+	  <van-grid-item class="list1"
 	    v-for="(item,i) in list"
 	    :key="i"
 	    :icon="item.imgsrc"
@@ -15,8 +15,8 @@
 			  	<p>使用时间：</p>
 			  	<p>总价￥：</p>
 			  </div>
-			  <div slot="footer" class="reorder">
-			    <van-button size="small" type="danger" >立即支付</van-button>
+			  <div slot="footer"  style="height:2rem;">
+			    <van-button size="small" type="danger" style="float:right" >立即支付</van-button>
 			  </div>
 			</van-panel>
 			
@@ -78,7 +78,5 @@
 			.order-box{
 			margin-left:20%;
 			}
-			.reorder{
-			float:right;	
-			}
+			
 </style>
