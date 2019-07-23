@@ -23,11 +23,11 @@
 	import {Tab, Tabs} from 'vant';
 	import OrderList from  '@/views/OrderList'
 	import Ordering from  '@/views/Ordering'
-<<<<<<< HEAD
-	import axios from "axios"
-=======
 
->>>>>>> dev-mm
+	import axios from "axios"
+
+
+
 	export default {
 	  data() {
 	    return {
@@ -38,7 +38,7 @@
 	  	"v-orderlist":OrderList,
 	  	"v-ordering":Ordering,
 	  },
-<<<<<<< HEAD
+
 	  mounted(){
 	  	
 		axios({
@@ -50,11 +50,11 @@
 	    })
 	 
 	}
-	  }
-=======
+ }
+
 	  	 
-	}
->>>>>>> dev-mm
+	
+
 
 </script>
 <style>

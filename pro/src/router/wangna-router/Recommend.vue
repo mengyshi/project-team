@@ -35,7 +35,7 @@
         <div class="con-lunbo">
           <van-swipe :autoplay="3000" indicator-color="white">
             <van-swipe-item>
-<<<<<<< HEAD
+
               <van-image
                 width="100%"
                 height="100%"
@@ -62,7 +62,7 @@
                 height="100%"
                 src="https://img.yzcdn.cn/vant/cat.jpeg"
               />
-=======
+
               <van-image width="100%" height="100%" src="https://img.yzcdn.cn/vant/cat.jpeg" />
             </van-swipe-item>
             <van-swipe-item>
@@ -73,7 +73,7 @@
             </van-swipe-item>
             <van-swipe-item>
               <van-image width="100%" height="100%" src="https://img.yzcdn.cn/vant/cat.jpeg" />
->>>>>>> dev-mm
+
             </van-swipe-item>
           </van-swipe>
         </div>
@@ -115,11 +115,11 @@
         <div class="con-travel-story">
           <p>精彩旅行故事</p>
           <van-grid :border="false" :column-num="2">
-<<<<<<< HEAD
+
             <van-grid-item to="/Travelstory">
-=======
+
             <van-grid-item to="./trip">
->>>>>>> dev-mm
+
               <van-image src="https://img.yzcdn.cn/vant/apple-1.jpg" />
               <p>名称</p>
               <p>描述</p>
@@ -130,11 +130,11 @@
                 <van-icon name="chat-o" size="14" />
               </p>
             </van-grid-item>
-<<<<<<< HEAD
-            <van-grid-item to="/Travelstory">
-=======
-            <van-grid-item to="/trip">
->>>>>>> dev-mm
+
+            <van-grid-item to="/Travelstory"/>
+
+            <van-grid-item to="/trip"/>
+
               <van-image src="https://img.yzcdn.cn/vant/apple-2.jpg" />
               <p>名称</p>
               <p>描述</p>
@@ -302,8 +302,7 @@ export default {
   color: #000;
   font-size: 14px;
 }
-<<<<<<< HEAD
+
+
 </style>
-=======
-</style>
->>>>>>> dev-mm
+

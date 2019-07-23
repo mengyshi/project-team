@@ -49,12 +49,10 @@ export default {
     detail(i) {
       // console.log(i);
       axios({
-<<<<<<< HEAD
+
         url: "http://10.8.157.43:8080//travelLog/findById.do",
         // url: "http://dvbpr7.natappfree.cc/travelLog/findById.do",
-=======
-        url: "http://10.8.157.43:8080///travelLog/findById.do",
->>>>>>> dev-mm
+
         params: { id: i }
       }).then(data => {
         console.log(data);
@@ -66,10 +64,7 @@ export default {
   mounted() {
     axios({
       url: "http://10.8.157.43:8080//travelLog/list.do"
-<<<<<<< HEAD
-      // url: "http://dvbpr7.natappfree.cc/travelLog/list.do"
-=======
->>>>>>> dev-mm
+
     })
       .then(data => {
         let arr = data.data.info;

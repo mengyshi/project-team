@@ -1,5 +1,5 @@
 <template>
-<<<<<<< HEAD
+
   <div>
     <van-grid :column-num="5" square>
       <van-grid-item
@@ -77,7 +77,7 @@ export default {
   margin-left: 20%;
 }
 </style>
-=======
+
 	<div>	
 	<van-grid :column-num="5" square >
 	  <van-grid-item class="list1"
@@ -159,4 +159,4 @@ export default {
 			}
 			
 </style>
->>>>>>> dev-mm
+

@@ -2,7 +2,7 @@
 
 	<div class="box">
 
-	<div>
+	
 		<header id="header" class="">
 			<van-nav-bar style="font-size:1.6rem">
 					<van-icon name="setting-o"  slot="left" size="1.6rem"/>

@@ -8,7 +8,7 @@
 		  @click-left="onClickLeft()"
 	/>
 	<div id="main">
-<<<<<<< HEAD
+
 		<span class="touxiang">
 		<van-image
 		  round
@@ -41,47 +41,45 @@
 
 		</div>
 		</van-dialog>
-=======
+
 		<span class="touxiang">	
 		</span>
 		<span>修改头像</span>
->>>>>>> dev-mm
+
 	</div>
 
 	<div id="content">
 			
 				<van-panel title="昵称" >
-<<<<<<< HEAD
+
 				 <div class="content"><em>{{info.username}}</em><span @click="tap('username')">&gt;</span></div>
-=======
-				 <div class="content"><em>用户名</em><span @click="tap('username')">&gt;</span></div>
->>>>>>> dev-mm
+
 				</van-panel>
 			
 			
 				<van-panel title="性别">
-<<<<<<< HEAD
+
 					<div class="content"><em>{{info.sex}}</em><span @click="tap('sex')">&gt;</span></div>
 				</van-panel>
 
 				<van-panel title="常用手机">
 					<div class="content"><em>{{info.tel}}</em><span @click="tap('telphone')">&gt;</span></div>
-=======
+
 					<div class="content"><em>内容</em><span @click="tap('sex')">&gt;</span></div>
 				</van-panel>
 
 				<van-panel title="常用手机">
 					<div class="content"><em>内容</em><span @click="tap('telphone')">&gt;</span></div>
->>>>>>> dev-mm
+
 				</van-panel>
 			
 			
 				<van-panel title="出生日期">
-<<<<<<< HEAD
+
 					<div class="content"><em>{{info.birthday}}</em><span @click="tap('birthday')">&gt;</span></div>
-=======
+
 					<div class="content"><em>内容</em><span @click="tap('birthday')">&gt;</span></div>
->>>>>>> dev-mm
+
 				</van-panel>
 			
 				<van-panel title="身份证号码"  >
@@ -89,7 +87,7 @@
 				</van-panel>
 			
 				<van-panel title="故乡"   >
-<<<<<<< HEAD
+
 					<div class="content"><em>{{info.place}}</em><span @click="tap('hometown')">&gt;</span></div>
 				</van-panel>
 			
@@ -99,7 +97,7 @@
 			
 				<van-panel title="邮箱地址"  >
 					<div class="content"><em>{{info.email}}</em><span @click="tap('mail')">&gt;</span></div>
-=======
+
 					<div class="content"><em>内容</em><span @click="tap('hometown')">&gt;</span></div>
 				</van-panel>
 			
@@ -109,7 +107,7 @@
 			
 				<van-panel title="邮箱地址"  >
 					<div class="content"><em>内容</em><span @click="tap('mail')">&gt;</span></div>
->>>>>>> dev-mm
+
 				</van-panel>		
 		</div>
 
@@ -117,20 +115,14 @@
 	</div>
 </template>
 
-
 <script>
-<<<<<<< HEAD
+
 import axios from "axios"
 	export default{
 		data(){
 			return{
 				info:"",
 				show: false
-=======
-	export default{
-		data(){
-			return{
->>>>>>> dev-mm
 
 			}
 		},
@@ -142,7 +134,7 @@ import axios from "axios"
 			tap(nextpath){
 				this.$router.push(""+nextpath);
 
-<<<<<<< HEAD
+
 			},
 			shows(){
 				this.show=true;
@@ -168,12 +160,11 @@ import axios from "axios"
 	       // this.address=list;
 	       // console.log(this.address)
 		  })
-=======
 			}
->>>>>>> dev-mm
-		}
 
 	}
+
+	
 </script>
 
 
@@ -195,11 +186,11 @@ import axios from "axios"
 		flex-direction: column;
 
 	}
-<<<<<<< HEAD
-	 .touxiang{
-=======
+
+	 
+
 	#main .touxiang{
->>>>>>> dev-mm
+
 
 		display: block;
 		width:8rem;
@@ -207,10 +198,7 @@ import axios from "axios"
 		background:url("http://img3.imgtn.bdimg.com/it/u=4171914132,1957317625&fm=26&gp=0.jpg") no-repeat;
 		background-size:8rem 8rem;
 		border-radius: 50%;
-<<<<<<< HEAD
-		
-=======
->>>>>>> dev-mm
+
 	}
 
 	.content{
@@ -228,7 +216,7 @@ import axios from "axios"
 		color:#cecece;
 		margin-right:2rem
 	}
-<<<<<<< HEAD
+
 	.photo{
 		display:flex;
 		justify-content:center;
@@ -237,6 +225,5 @@ import axios from "axios"
 		margin-bottom:0rem;
 		
 	}
-=======
->>>>>>> dev-mm
+
 </style>

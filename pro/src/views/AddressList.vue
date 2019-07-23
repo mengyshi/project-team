@@ -48,10 +48,7 @@
 
     onEdit(item, index) {
       this.$router.push({path:"/editaddress",query:{index:item.id}})
-<<<<<<< HEAD
 
-=======
->>>>>>> dev-mm
     },
     onClickLeft(){
     	this.$router.go(-1);
@@ -60,20 +57,17 @@
   },
   mounted(){
     axios({
-<<<<<<< HEAD
+
       url:"http://10.8.157.18:8080/set/adds.do",
-=======
-      url:"http://uvwvkr.natappfree.cc/set/adds.do",
->>>>>>> dev-mm
+
       method:"get",
 
     }).then((data)=>{
       
       var lists=data.data.data;
-<<<<<<< HEAD
+
       console.log(lists)
-=======
->>>>>>> dev-mm
+
       var datas=[];
       for(var i=0;i<lists.length;i++){
         
@@ -87,8 +81,7 @@
        this.list=datas;
   })
 }
-<<<<<<< HEAD
-=======
+
   // $.ajax({
   //       url: 'http://q9ivr2.natappfree.cc/set/adds.do',
   //       type: 'get',
@@ -98,7 +91,7 @@
   //         console.log(data)
   //       }
   //     })
->>>>>>> dev-mm
+
 }
 </script>
 <style>
