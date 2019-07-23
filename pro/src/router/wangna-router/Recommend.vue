@@ -38,28 +38,28 @@
               <van-image
                 width="100%"
                 height="100%"
-                src="https://img.yzcdn.cn/vant/cat.jpeg"
+                src="http://cdn2.tmmtours.cn/201907151520/picture/o1cn018sfoup1eqdgzgpmj5_!!2270913865.jpg"
               />
             </van-swipe-item>
             <van-swipe-item>
               <van-image
                 width="100%"
                 height="100%"
-                src="https://img.yzcdn.cn/vant/cat.jpeg"
+                src="http://wdxx.ynkl003.com/upfiles/image/20181217/20181217233396189618.jpg"
               />
             </van-swipe-item>
             <van-swipe-item>
              <van-image
                 width="100%"
                 height="100%"
-                src="https://img.yzcdn.cn/vant/cat.jpeg"
+                src="http://wdxg.ynkl003.com/upfiles/image/20190408/20190408112117951795.jpg"
               />
             </van-swipe-item>
             <van-swipe-item>
               <van-image
                 width="100%"
                 height="100%"
-                src="https://img.yzcdn.cn/vant/cat.jpeg"
+                src="http://wdxg.ynkl003.com/upfiles/image/20190403/20190403134469476947.jpg"
               />
             </van-swipe-item>
           </van-swipe>
@@ -68,39 +68,39 @@
         <div class="con-listing">
           <p>房源推荐</p>
           <van-row gutter="20" type="flex" justify="space-around" centered="true">
-            <van-col span="6">
+            <van-col span="6" v-for="item in list" :key="item.id">
               <router-link to="/Listingdetail">
-                <van-card class="listing" tag="民宿" thumb="https://img.yzcdn.cn/vant/t-thirt.jpg" />
+                <van-card class="listing" tag="item.hotel" thumb="item.imgpath" />
+              </router-link>
+            </van-col>
+            <!-- <van-col span="6">
+              <router-link to="/Listingdetail">
+                <van-card class="listing" tag="list[1].hotel" thumb="hlist[1].imgpath" />
               </router-link>
             </van-col>
             <van-col span="6">
               <router-link to="/Listingdetail">
-                <van-card class="listing" tag="酒店" thumb="https://img.yzcdn.cn/vant/t-thirt.jpg" />
+                <van-card class="listing" tag="list[3].hotel" thumb="list[3].imgpath" />
               </router-link>
-            </van-col>
-            <van-col span="6">
-              <router-link to="/Listingdetail">
-                <van-card class="listing" tag="短租" thumb="https://img.yzcdn.cn/vant/t-thirt.jpg" />
-              </router-link>
-            </van-col>
+            </van-col> -->
           </van-row>
         </div>
         <!-- 探索体验 -->
         <div class="con-experience">
           <p>探索体验</p>
-          <van-grid :column-num="3" gutter="10" :border="false">
+          <van-grid :column-num="list.length" gutter="10" :border="false">
             <van-grid-item
-              v-for="value in 3"
-              :key="value"
+              v-for="value in list"
+              :key="value.id"
               icon="photo-o"
-              text="文字"
+              text="value.hotel"
               to="/Exploringexperience"
             />
           </van-grid>
         </div>
         <!-- 精彩旅行故事 -->
         <div class="con-travel-story">
-          <p>精彩旅行故事</p>
+          <p class="con-travel-title">精彩旅行故事</p>
           <van-grid :border="false" :column-num="2">
             <van-grid-item to="/Travelstory">
               <van-image src="https://img.yzcdn.cn/vant/apple-1.jpg" />
@@ -158,7 +158,8 @@ export default {
         { text: "上海", value: 1 },
         { text: "广州", value: 2 }
       ],
-      value: ""
+      value: "",
+      list:[]
     };
   },
   methods: {
@@ -177,14 +178,16 @@ export default {
     }
   },
   mounted() {
-    // axios
-    //   .get("http://jun4gv.natappfree.cc/hotel/findHotel.do")
-    //   .then(function(response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function(error) {
-    //     console.log(error);
-    //   });
+    let _this=this;
+    axios
+      .get("http://gdsmes.natappfree.cc/hotel/findHotel.do")
+      .then(function(response) {
+        console.log(response.data.info);
+        _this.list=response.data.info
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 };
 </script>
@@ -220,6 +223,9 @@ export default {
 .con-lunbo {
   margin-bottom: 20px;
 }
+.con-lunbo img{
+  height: 282px;
+}
 /* 房源 */
 .con-listing {
   margin-bottom: 20px;
@@ -249,6 +255,9 @@ export default {
 /* 精彩旅行故事 */
 .con-travel-story {
   margin-bottom: 20px;
+}
+.con-travel-title{
+  text-align: left;
 }
 .con-travel-story p {
   height: 30px;
