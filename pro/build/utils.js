@@ -33,6 +33,7 @@ exports.cssLoaders = function (options) {
   function generateLoaders (loader, loaderOptions) {
     const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
 
+
     if (loader) {
       loaders.push({
         loader: loader + '-loader',
@@ -52,6 +53,10 @@ exports.cssLoaders = function (options) {
     } else {
       return ['vue-style-loader'].concat(loaders)
     }
+
+
+
+
   }
 
   // https://vue-loader.vuejs.org/en/configurations/extract-css.html
@@ -99,3 +104,29 @@ exports.createNotifierCallback = () => {
     })
   }
 }
+
+// var cssLoader = {
+
+//   loader: 'css-loader',
+
+//   options: {
+
+//     minimize: process.env.NODE_ENV === 'production',
+
+//     sourceMap: options.sourceMap
+
+//   }
+
+// }
+
+// var px2remLoader = {
+
+//   loader: 'px2rem-loader',
+
+//   options: {
+
+//     remUnit: 75
+
+//   }
+
+// }

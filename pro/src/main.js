@@ -1,18 +1,28 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from "vue";
 import App from "./App";
+//import 'lib-flexible'
 import router from "./router";
-// import router1 from "./router/login";
+import store from "./store";
 import Vant from "vant";
 import "vant/lib/index.css";
+//图标库
+import "vant/lib/icon/local.css";
+//import $ from "zepto";
+// Vue.use(Icon);
+Vue.config.productionTip = false;
+
+// import router1 from "./router/login";
+
 import VueTap from "v-tap";
 import Share from "vue-social-share";
 import "vue-social-share/dist/client.css";
+
+import { Lazyload } from "vant";
 import { Toast } from "vant";
 import "./data/loginData.js";
 import "./data/registerData.js";
-import store from "./store";
-import { Lazyload } from "vant";
-
 Vue.config.productionTip = false;
 Vue.use(Vant);
 Vue.use(VueTap);
@@ -25,7 +35,7 @@ Vue.use(Lazyload);
 new Vue({
   el: "#app",
   router,
-  // router1,
+  store,
   components: { App },
   template: "<App/>",
 });
