@@ -10,14 +10,23 @@
           label="用户名"
           right-icon="question-o"
           placeholder="请输入用户名"
+          @blur="userTest"
           @click-right-icon="$toast('question')"
         />
-        <van-field v-model="password" type="password" label="密码" placeholder="请输入密码" required />
+        <span v-show="false">此用户名已注册</span>
+        <van-field
+          v-model="password"
+          type="password"
+          label="密码"
+          @blur="pwdTest"
+          placeholder="请输入密码"
+          required
+        />
       </van-cell-group>
       <van-radio-group v-model="radio" id="sex">
         性别：
-        <van-radio name="1" icon-size="14px">男</van-radio>
-        <van-radio name="2" icon-size="14px">女</van-radio>
+        <van-radio name="男" icon-size="14px">男</van-radio>
+        <van-radio name="女" icon-size="14px">女</van-radio>
       </van-radio-group>
       <van-cell-group>
         <!-- error-message="手机号格式错误" -->
@@ -29,7 +38,13 @@
         <van-field v-model="birthday" label="邮箱" placeholder="请输入邮箱" />
       </van-cell-group>
     </div>
-    <van-button type="primary" id="RegisterBtn" size="small" v-tap="{methods:registerBtn}">注册</van-button>
+    <van-button
+      v-bind:disable="dis"
+      type="primary"
+      id="RegisterBtn"
+      size="small"
+      v-tap="{methods:registerBtn}"
+    >注册</van-button>
   </div>
 </template>
 <script>
@@ -45,28 +60,62 @@ export default {
       radio: "",
       currentDate: new Date(),
       minDate: new Date(),
-      birthday: ""
+      birthday: "",
+      dis: false
     };
   },
   methods: {
+    // 用户名测试
+    userTest() {
+      if (!this.username) {
+        this.$toast("用户名不能为空");
+      } else {
+        axios({
+          // 用户名不允许重复
+          url: "http://10.8.157.41:8080/user/checkUserName",
+          params: { username: this.username }
+        })
+          .then(data => {
+            console.log(data);
+            if (data.data.code == 1) {
+              this.$toast("此用户名已注册");
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
+    },
+    //密码测试
+    pwdTest() {
+      // 不能全部是数字   不能全部是字母   必须是数字或字母
+      let p = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/;
+      if (!this.password) {
+        this.$toast("密码不能为空");
+      } else if (!p.test(this.password)) {
+        this.$toast("密码由8-16位数字和字母组成");
+      }
+    },
     registerBtn() {
-      console.log(11);
       axios({
-        url: "http://jha4m2.natappfree.cc/v2/api-docs/user/checkUserName",
-        method: "get",
-        params: { username: "aaa" }
+        url: "http://10.8.157.41:8080/user/registerUser",
+        params: { username: this.username, password: this.password }
       })
         .then(data => {
           console.log(data);
+          if (data.data == "success") {
+            this.$router.push("/loginC");
+          }
         })
         .catch(err => {
           console.log(err);
         });
     },
     onClickLeft() {
-      this.$toast("返回");
+      this.$router.go(1);
     }
-  }
+  },
+  mounted() {}
 };
 </script>
 <style>
