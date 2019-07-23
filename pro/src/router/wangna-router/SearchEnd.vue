@@ -13,6 +13,8 @@
             shape="round"
             left-icon
             input-align="center"
+            show-actions
+            @search="onSearch"
           />
         </van-col>
       </van-row>
@@ -28,24 +30,37 @@
     </div>
     <!-- 分类列表 -->
     <div class="sort-list">
-      <van-row type="flex" justify="flex-start" gutter="10">
-        <van-col span="12">
-          <van-image width="100%" height="100%" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-        </van-col>
-        <van-col span="12">
-          <ul class="info">
-            <li><p>店名</p></li>
-            <li><p>消费人数</p></li>
-            <li><p>店铺地址详情</p></li>
-            <li><p><span>价格</span><span>优惠</span></p></li>
-          </ul>
-        </van-col>
-      </van-row>
+      <div v-for="item in list" :key="item.id">
+        <van-row type="flex" justify="flex-start" gutter="10">
+          <van-col span="12">
+            <van-image width="100%" height="100%" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+          </van-col>
+          <van-col span="12">
+            <ul class="info">
+              <li>
+                <p>{{item.hotelname}}</p>
+              </li>
+              <li>
+                <p>{{item.count}}</p>
+              </li>
+              <li>
+                <p>{{item.address}}</p>
+              </li>
+              <li>
+                <p>
+                  <span>{{item.hotelprice}}</span>
+                  <span>优惠</span>
+                </p>
+              </li>
+            </ul>
+          </van-col>
+        </van-row>
+      </div>
     </div>
-
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "SearchEnd",
   data() {
@@ -55,10 +70,11 @@ export default {
       value2: "a",
       value3: "d",
       value4: "h",
+      list: [],
       option1: [
         { text: "位置区域", value: 0 },
         { text: "郑州", value: 1 },
-        { text: "上海", value: 2 }
+        { text: "杭州", value: 2 }
       ],
       option2: [
         { text: "价格/星级", value: "a" },
@@ -78,24 +94,64 @@ export default {
     };
   },
   methods: {
-    cancelBtn(){
-      this.$router.go(-1)
+    cancelBtn() {
+      this.$router.go(-1);
+    },
+    onSearch() {
+      let that = this;
+      function getUserAccount() {
+        return axios.get("http://10.8.157.8:8080/hotel/findHotelAll.do",{params:{address:that.value}});
+      }
+      function getUserPermissions() {
+        return axios.get("http://10.8.157.8:8080/hotel/findHotelAll.do",{params:{hotelname:that.value}});
+      }
+      axios.all([getUserAccount(), getUserPermissions()]).then(
+        axios.spread(function(acct, perms) {
+          // 两个请求现在都执行完成
+          if(acct.data.info.length!=0){
+            that.list=acct.data.info
+          }
+          else if(perms.data.info.length!=0){
+            that.list=perms.data.info;
+          }
+          else{
+            that.list=[]
+          }
+        })
+      );
     }
   },
+  mounted() {
+    console.log(this.$route);
+    let that = this;
+    axios({
+      method: "get",
+      url: "http://10.8.157.8:8080/hotel/findHotelAll.do",
+      params: {}
+    })
+      .then(function(res) {
+        that.list = res.data.info;
+      })
+      .catch(function(err) {
+      });
+  }
 };
 </script>
 <style lang="" scope="">
-.select-list{
+.select-list {
   margin-bottom: 40px;
 }
-.sort-list .info li{
+.sort-list .van-row {
+  margin-bottom: 10px;
+}
+.sort-list .info li {
   margin-bottom: 6px;
 }
-.sort-list .info p{
+.sort-list .info p {
   text-align: left;
   text-indent: 10px;
 }
-.sort-list .info p span{
+.sort-list .info p span {
   margin-right: 10px;
 }
 </style>
