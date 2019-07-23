@@ -24,6 +24,7 @@
 </template>
 <script>
 	import area from "../assets/area";
+	import axios from "axios"
 	console.log(area.province_list)
 	export default {
 	  data() {
@@ -47,6 +48,17 @@
 	      console.log(content.addressDetail,content.tel,content.city,content.county,content.name,content.province);
 	      var area=""+content.province+content.city+content.county;
 	      console.log(area)
+		  axios({
+		      url:"http://10.8.157.18:8080/set/addadds.do",
+		      method:"get",
+		      params:{name:content.name,area:area,phone:content.tel,detailadds:content.addressDetail,areaCode:content.areaCode}
+
+
+		    }).then((data)=>{
+		    	console.log(data)
+
+
+		    })
 	    },
 	    onDelete() {
 	      

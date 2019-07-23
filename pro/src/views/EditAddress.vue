@@ -45,10 +45,32 @@
 	  	 onClickLeft(){
 	    	this.$router.go(-1);
 	    },
-	    onSave() {
+	    onSave(conent) {
+	    	var id=this.$route.query.index;
+	    	 var area=""+content.province+content.city+content.county;
+	    	axios({
+		      url:"http://10.8.157.18:8080/set/updateadds.do",
+		      method:"post",
+		      params:{id:id,name:content.name,area:area,phone:content.tel,detailadds:content.addressDetail,areaCode:content.areaCode}
+		    }).then((data)=>{
+		      console.log(data);
+		      console.log("修改成功")
+		  })
+
 	      
 	    },
 	    onDelete() {
+	    	var id=this.$route.query.index;
+	    	axios({
+		      url:"http://10.8.157.18:8080/set/dele.do",
+		      method:"get",
+		      params:{id:id}
+
+		    }).then((data)=>{
+		      console.log(data.data.data);
+		      console.log("删除成功")
+		  })
+
 	      
 	    },
 	  },
@@ -56,27 +78,21 @@
 	  	console.log(this.$route.query.index);
 	  	var id=this.$route.query.index;
 
-		  //   axios({
-		  //     url:"http://uvwvkr.natappfree.cc/set/findbyid.do",
-		  //     method:"post",
-		  //     params:{id:id}
+		    axios({
+		      url:"http://10.8.157.18:8080/set/findbyid.do",
+		      method:"post",
+		      params:{id:id}
 
-		  //   }).then((data)=>{
-		  //     console.log(data.data.data)
-		  //     var lists=data.data.data;
-		  //     var datas=[];2、
-		  //     for(var i=0;i<lists.length;i++){
-		        
-		  //       //var address=""+lists[i].area+lists[i].detailadds
-		  //       var id=""+lists[i].id;
-		  //       var list={id:id,name:lists[i].name,tel:lists[i].phone,province:"",city:"",county:"",addressDetail:lists[i].detailadds}
-		       
-		  //       datas.push(list);
-		        
-		  //     }
-		  //      this.address=datas;
-		  //      console.log(this.address)
-		  // })
+		    }).then((data)=>{
+		     
+
+		      var lists=data.data.data;
+		      
+		      var list={id:id,name:lists.name,tel:lists.phone,addressDetail:lists.detailadds,areaCode:lists.areaCode}
+	       		console.log(list)
+	       this.address=list;
+	       console.log(this.address)
+		  })
 		}
 	  
 	}

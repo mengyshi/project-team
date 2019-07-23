@@ -56,6 +56,7 @@
 
 
 <script>
+import axios from "axios"
 	export default{
 		data(){
 			return{
@@ -71,6 +72,24 @@
 				this.$router.push(""+nextpath);
 
 			}
+		},
+		mounted(){
+			axios({
+		      url:"http://10.8.157.18:8080/set/personage.do",
+		      method:"get",
+		      params:{username:"man"}
+
+		    }).then((data)=>{
+		     
+
+		      var lists=data.data.data;
+		      console.log(lists)
+		      
+		      // var list={id:id,name:lists.name,tel:lists.phone,addressDetail:lists.detailadds,areaCode:lists.areaCode}
+	       // 		console.log(list)
+	       // this.address=list;
+	       // console.log(this.address)
+		  })
 		}
 
 	}

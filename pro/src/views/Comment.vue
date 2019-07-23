@@ -45,6 +45,16 @@
     			console.log("sssss")
     			this.$router.push("/writecomment")
     		}
+		},
+		mounted(){
+			axios({
+		      url:"http://10.8.157.18:8080/set/personage.do",
+		      method:"get",
+		      params:{username:"man"}
+
+		    }).then((data)=>{
+		    	console.log(data)
+		    })
 		}
 	}
 </script>

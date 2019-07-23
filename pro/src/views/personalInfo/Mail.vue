@@ -15,8 +15,6 @@
 	.ipt{
 		margin:0 1.2rem;
 		background:#cecece;
-
-
 	}
 	.ipt input{
 		border:0;
