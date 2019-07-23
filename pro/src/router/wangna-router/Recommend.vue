@@ -49,7 +49,7 @@
               />
             </van-swipe-item>
             <van-swipe-item>
-             <van-image
+              <van-image
                 width="100%"
                 height="100%"
                 src="http://wdxg.ynkl003.com/upfiles/image/20190408/20190408112117951795.jpg"
@@ -67,36 +67,23 @@
         <!-- 房源 -->
         <div class="con-listing">
           <p>房源推荐</p>
-          <van-row gutter="20" type="flex" justify="space-around" centered="true">
-            <van-col span="6" v-for="item in list" :key="item.id">
+          <div class="con-listing-num">
+            <div v-for="item in list" :key="item.id">
               <router-link to="/Listingdetail">
-                <van-card class="listing" tag="item.hotel" thumb="item.imgpath" />
+                <van-card class="listing" :tag="item.hotel" :thumb="item.imgpath" />
               </router-link>
-            </van-col>
-            <!-- <van-col span="6">
-              <router-link to="/Listingdetail">
-                <van-card class="listing" tag="list[1].hotel" thumb="hlist[1].imgpath" />
-              </router-link>
-            </van-col>
-            <van-col span="6">
-              <router-link to="/Listingdetail">
-                <van-card class="listing" tag="list[3].hotel" thumb="list[3].imgpath" />
-              </router-link>
-            </van-col> -->
-          </van-row>
+            </div>
+          </div>
         </div>
         <!-- 探索体验 -->
         <div class="con-experience">
           <p>探索体验</p>
-          <van-grid :column-num="list.length" gutter="10" :border="false">
-            <van-grid-item
-              v-for="value in list"
-              :key="value.id"
-              icon="photo-o"
-              text="value.hotel"
-              to="/Exploringexperience"
-            />
-          </van-grid>
+          <ul>
+            <li v-for="item in list1" :key="item.id">
+              <van-image :src="item.imgpath" @click="insertExploring"></van-image>
+              <p>{{item.hotel}}</p>
+            </li>
+          </ul>
         </div>
         <!-- 精彩旅行故事 -->
         <div class="con-travel-story">
@@ -159,7 +146,8 @@ export default {
         { text: "广州", value: 2 }
       ],
       value: "",
-      list:[]
+      list: [],
+      list1: []
     };
   },
   methods: {
@@ -175,15 +163,23 @@ export default {
     },
     searchBtn() {
       this.$router.push("indexSearch");
+    },
+    insertExploring(){
+      this.$router.push('Exploringexperience')
     }
   },
   mounted() {
-    let _this=this;
+    let _this = this;
     axios
-      .get("http://gdsmes.natappfree.cc/hotel/findHotel.do")
+      .get("http://10.8.157.8:8080/hotel/findHotel.do")
       .then(function(response) {
-        console.log(response.data.info);
-        _this.list=response.data.info
+        for (let i = 0; i < response.data.info.length; i++) {
+          if (i < 3) {
+            _this.list.push(response.data.info[i]);
+          } else {
+            _this.list1.push(response.data.info[i]);
+          }
+        }
       })
       .catch(function(error) {
         console.log(error);
@@ -223,7 +219,7 @@ export default {
 .con-lunbo {
   margin-bottom: 20px;
 }
-.con-lunbo img{
+.con-lunbo img {
   height: 282px;
 }
 /* 房源 */
@@ -236,6 +232,10 @@ export default {
   height: 30px;
   line-height: 30px;
 }
+.con-listing .con-listing-num {
+  display: flex;
+  justify-content: space-around;
+}
 .con-listing .listing {
   height: 90px;
   padding: 0px;
@@ -244,7 +244,7 @@ export default {
 }
 /* 探索体验 */
 .con-experience {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .con-experience p {
   height: 30px;
@@ -252,11 +252,25 @@ export default {
   text-indent: 10px;
   text-align: left;
 }
+.con-experience ul{
+  padding: 0 10px;
+  display: flex;
+  height: 110px;
+  justify-content: space-around;
+}
+.con-experience ul li{
+  display: flex;
+  flex-direction: column;
+}
+.con-experience ul li img{
+  height: 100px;
+  width: 100px;
+}
 /* 精彩旅行故事 */
 .con-travel-story {
   margin-bottom: 20px;
 }
-.con-travel-title{
+.con-travel-title {
   text-align: left;
 }
 .con-travel-story p {
@@ -290,5 +304,4 @@ export default {
   color: #000;
   font-size: 14px;
 }
-
 </style>
