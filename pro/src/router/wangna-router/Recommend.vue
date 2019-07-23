@@ -80,7 +80,9 @@
           <p>探索体验</p>
           <ul>
             <li v-for="item in list1" :key="item.id">
-              <van-image :src="item.imgpath" @click="insertExploring"></van-image>
+              <router-link :to="{path:'Exploringexperience',name:'Exploringexperience',query:{id:item.id}}">
+                <van-image :src="item.imgpath"></van-image>
+              </router-link>
               <p>{{item.hotel}}</p>
             </li>
           </ul>
@@ -163,9 +165,6 @@ export default {
     },
     searchBtn() {
       this.$router.push("indexSearch");
-    },
-    insertExploring(){
-      this.$router.push('Exploringexperience')
     }
   },
   mounted() {
@@ -252,17 +251,17 @@ export default {
   text-indent: 10px;
   text-align: left;
 }
-.con-experience ul{
+.con-experience ul {
   padding: 0 10px;
   display: flex;
   height: 110px;
   justify-content: space-around;
 }
-.con-experience ul li{
+.con-experience ul li {
   display: flex;
   flex-direction: column;
 }
-.con-experience ul li img{
+.con-experience ul li img {
   height: 100px;
   width: 100px;
 }
