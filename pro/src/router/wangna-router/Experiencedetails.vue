@@ -131,6 +131,6 @@ export default {
   text-indent: 30px;
 }
 .detail-con li p {
-  /* text-indent: 30px; */
+  text-indent: 30px;
 }
 </style>
