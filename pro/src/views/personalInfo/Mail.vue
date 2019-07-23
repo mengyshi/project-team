@@ -15,6 +15,11 @@
 	.ipt{
 		margin:0 1.2rem;
 		background:#cecece;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> dev-mm
 	}
 	.ipt input{
 		border:0;

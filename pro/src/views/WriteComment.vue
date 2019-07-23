@@ -38,6 +38,7 @@
       		
     		},
     		tap(){
+<<<<<<< HEAD
     			console.log(this.txt);
     			axios({
 			      url:"http://10.8.157.18:8080/appr/addapprshow.do",
@@ -46,6 +47,9 @@
 			    }).then((data)=>{
 			    	console.log(data)
 			    })
+=======
+    			console.log(this.txt)
+>>>>>>> dev-mm
     		}
     		
 		}

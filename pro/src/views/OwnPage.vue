@@ -1,5 +1,8 @@
 <template>
+
 	<div class="box">
+
+	<div>
 		<header id="header" class="">
 			<van-nav-bar style="font-size:1.6rem">
 					<van-icon name="setting-o"  slot="left" size="1.6rem"/>
@@ -138,10 +141,21 @@
 	};
 </script>
 <style>
+
 	.box{
 		margin-bottom: 1rem;
 	}
-	
+
+	#header{
+		width:100%;
+		height: 11rem;
+		background:url("http://img2.imgtn.bdimg.com/it/u=18565717,1492017595&fm=26&gp=0.jpg");
+
+	}
+	section{
+		background: gray;
+	}
+
 	#main-box{
 		display: flex;
 		justify-content: space-between;
