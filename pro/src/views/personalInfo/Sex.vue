@@ -1,11 +1,9 @@
 <template>
 	<div>
 		<van-panel title="性别" desc="请在下面选择您的性别" style="font-size:1rem">
-			<div>
-				
-			</div>
+			 <div class="ipt"><input type="text" v-model="val"/>
 		  <van-picker :columns="columns" @change="onChange" />
-		  
+		  </div>
 		</van-panel>	
 	</div>
 </template>
@@ -13,6 +11,7 @@
 	export default{
 		  data() {
 		    return {
+		    	val:"",
 		      columns: ['男', '女']
 		    };
 		  },
@@ -20,6 +19,7 @@
 		    onChange(picker, value, index) {
 		      
 		      console.log(value)
+		      this.val=value;
 		    }
 		  }
 

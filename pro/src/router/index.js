@@ -43,7 +43,8 @@ import Birthday from "@/views/personalInfo/Birthday";
 import Hometown from "@/views/personalInfo/Hometown";
 
 import "vant/lib/index.css";
-
+import Uploderimg from "@/views/UplodeImg"
+    
 Vue.use(Vant);
 
 import LoginC from "@/views/LoginC.vue";
@@ -199,6 +200,10 @@ const router = new Router({
       path: "/trip",
       component: TripStory,
     },
+    {
+      path:"/uploderimg",
+      component:Uploderimg
+    }
   ],
 });
 

@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="box">
 		<header id="header" class="">
 			<van-nav-bar style="font-size:1.6rem">
 				
@@ -136,6 +136,9 @@
 	};
 </script>
 <style>
+	.box{
+		margin-bottom: 1rem;
+	}
 	#header{
 		width:100%;
 		height: 11rem;

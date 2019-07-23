@@ -38,7 +38,14 @@
       		
     		},
     		tap(){
-    			console.log(this.txt)
+    			console.log(this.txt);
+    			axios({
+			      url:"http://10.8.157.18:8080/appr/addapprshow.do",
+			      method:"get",
+			      params:{}
+			    }).then((data)=>{
+			    	console.log(data)
+			    })
     		}
     		
 		}

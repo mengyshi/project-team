@@ -23,7 +23,7 @@
 	import {Tab, Tabs} from 'vant';
 	import OrderList from  '@/views/OrderList'
 	import Ordering from  '@/views/Ordering'
-
+	import axios from "axios"
 	export default {
 	  data() {
 	    return {
@@ -34,8 +34,18 @@
 	  	"v-orderlist":OrderList,
 	  	"v-ordering":Ordering,
 	  },
-	  	 
+	  mounted(){
+	  	
+		axios({
+	      url:"http://10.8.157.18:8080/ord/orderdeta.do",
+	      method:"get",
+	      params:{}
+	    }).then((data)=>{
+	    	console.log(data)
+	    })
+	 
 	}
+	  }
 
 </script>
 <style>

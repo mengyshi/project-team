@@ -29,6 +29,7 @@
 	</div>
 </template>
 <script>
+import axios from "axios"
 	export default{
 		data(){
 			return{
@@ -38,8 +39,7 @@
 		},
 		methods:{
 			onClickLeft() {
-				this.$router.go(-1)
-
+				this.$router.go(-1);
     		},
       		tap(){
     			console.log("sssss")
@@ -48,12 +48,12 @@
 		},
 		mounted(){
 			axios({
-		      url:"http://10.8.157.18:8080/set/personage.do",
+		      url:"http://10.8.157.18:8080/appr/myapprshow.do",
 		      method:"get",
-		      params:{username:"man"}
-
 		    }).then((data)=>{
 		    	console.log(data)
+		    }).catch((err)=>{
+		    	console.log(err)
 		    })
 		}
 	}

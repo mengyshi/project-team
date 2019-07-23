@@ -45,7 +45,7 @@
 	  	 onClickLeft(){
 	    	this.$router.go(-1);
 	    },
-	    onSave(conent) {
+	    onSave(content) {
 	    	var id=this.$route.query.index;
 	    	 var area=""+content.province+content.city+content.county;
 	    	axios({
