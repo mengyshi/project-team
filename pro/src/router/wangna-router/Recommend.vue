@@ -52,7 +52,7 @@
               <van-image
                 width="100%"
                 height="100%"
-                src="http://wdxg.ynkl003.com/upfiles/image/20190408/20190408112117951795.jpg"
+                src="http://wdxg.ynkl003.com/upfiles/image/20190403/20190403134417801780.jpg"
               />
             </van-swipe-item>
             <van-swipe-item>
