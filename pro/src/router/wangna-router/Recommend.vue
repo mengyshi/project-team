@@ -69,7 +69,7 @@
           <p>房源推荐</p>
           <div class="con-listing-num">
             <div v-for="item in list" :key="item.id">
-              <router-link to="/Listingdetail">
+              <router-link :to="{name:'Listingdetail',query:{text:item.id}}">
                 <van-card class="listing" :tag="item.hotel" :thumb="item.imgpath" />
               </router-link>
             </div>
