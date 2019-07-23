@@ -2,7 +2,6 @@
 	<div class="box">
 		<header id="header" class="">
 			<van-nav-bar style="font-size:1.6rem">
-				
 					<van-icon name="setting-o"  slot="left" size="1.6rem"/>
 			  		<span slot="left" @click="tap()">设置</span>
 				
@@ -10,21 +9,11 @@
 			   <span slot="left">签到</span>
 			   <van-icon name="chat-o"  slot="right" size="1.6rem"/>
 			</van-nav-bar>
-			<div id="main-box">
-				<div id="main-left">
-					<h2>这是用户名</h2>
-					<div>
-						<van-icon name="sign"/> 
-			  			<span>高级会员</span>
-					</div>
-			  		
-				</div>
-				<div id="main-right">
-					<span @click="tap1()">
-						
-					</span>
-				</div>
-			</div>
+
+			<v-login v-if="info"></v-login>	
+			<v-unlogin v-if="!info"></v-unlogin>	
+
+			
 
 		</header>
 		<section>
@@ -59,9 +48,12 @@
 	</div>
 </template>
 <script>
+	import UserLogin from "./UserLogin";
+	import Unlogin from "./Nologin.vue"
 	export default {
 	  data() {
 	    return {
+	    	info:false,
 	      loading: false,
 	      list:[{
 				imgsrc:"bill-o",
@@ -114,8 +106,18 @@
 
 
 	  },
+	  components:{
+	  	"v-login":UserLogin,
+	  	"v-unlogin":Unlogin
+	  },
 	  mounted() {
 	    this.loading = false;
+	    if(localStorage.getItem("info")){
+	    	var username=localStorage.getItem("info").username;
+	    	this.info=true;
+	    }else{
+	    	this.info=false;
+	    }
 	  },
 	  methods:{
 	  	tap(){
@@ -139,15 +141,7 @@
 	.box{
 		margin-bottom: 1rem;
 	}
-	#header{
-		width:100%;
-		height: 11rem;
-		background:url("http://img2.imgtn.bdimg.com/it/u=18565717,1492017595&fm=26&gp=0.jpg");
-
-	}
-	section{
-		background: gray;
-	}
+	
 	#main-box{
 		display: flex;
 		justify-content: space-between;

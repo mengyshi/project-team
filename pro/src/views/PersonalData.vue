@@ -112,6 +112,7 @@ import axios from "axios"
 
 		},
 		mounted(){
+
 			axios({
 		      url:"http://10.8.157.18:8080/set/personage.do",
 		      method:"get",
@@ -135,7 +136,7 @@ import axios from "axios"
 
 <style>
 	#app{
-		text-align: left;
+		text-align:left;
 	}
 
 	#main{
