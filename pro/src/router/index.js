@@ -41,6 +41,7 @@ import IdCard from "@/views/personalInfo/IdCard";
 import City from "@/views/personalInfo/City";
 import Birthday from "@/views/personalInfo/Birthday";
 import Hometown from "@/views/personalInfo/Hometown";
+<<<<<<< HEAD
 
 import "vant/lib/index.css";
 
@@ -48,12 +49,18 @@ import Uploderimg from "@/views/UplodeImg"
     
 
 Vue.use(Vant);
+=======
+//  Kate_man
+import "vant/lib/index.css";
+>>>>>>> dev-mm
 import LoginC from "@/views/LoginC.vue";
 import LoginP from "@/views/LoginP.vue";
 import Register from "@/views/Register.vue";
 import Index from "@/views/Index.vue";
 import TripStory from "@/views/TripStory.vue";
-
+import StoryDetail from "@/views/StoryDetail.vue";
+import UpdatePwd from "@/views/UpdatePwd";
+Vue.use(Vant);
 Vue.use(Router);
 
 const router = new Router({
@@ -202,9 +209,19 @@ const router = new Router({
       component: TripStory,
     },
     {
+<<<<<<< HEAD
       path:"/uploderimg",
       component:Uploderimg
     }
+=======
+      path: "/detail",
+      component: StoryDetail,
+    },
+    {
+      path: "/update",
+      component: UpdatePwd,
+    },
+>>>>>>> dev-mm
   ],
 });
 

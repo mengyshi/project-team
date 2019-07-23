@@ -16,6 +16,10 @@
         <van-cell-group>
           <van-field
             v-model="username"
+<<<<<<< HEAD
+=======
+            value="username"
+>>>>>>> dev-mm
             required
             clearable
             label="用户名"
@@ -23,7 +27,18 @@
             placeholder="请输入用户名"
             @click-right-icon="$toast('question')"
           />
+<<<<<<< HEAD
           <van-field v-model="password" type="password" label="密码" placeholder="请输入密码" required />
+=======
+          <van-field
+            v-model="password"
+            ref="password"
+            type="password"
+            label="密码"
+            placeholder="请输入密码"
+            required
+          />
+>>>>>>> dev-mm
         </van-cell-group>
       </div>
 
@@ -31,6 +46,7 @@
         <van-checkbox
           id="rememberPwd"
           v-model="checked"
+          @click="rememberPwd"
           checked-color="#07c160"
           icon-size="12px"
         >记住密码</van-checkbox>
@@ -60,6 +76,7 @@ export default {
       checked: "",
       username: "",
       password: "",
+      mmInfo: [],
       config: {
         url: "http://www.baidu.com",
         source: "",
@@ -70,9 +87,13 @@ export default {
         wechatQrcodeTitle: "微信扫一扫：分享",
         wechatQrcodeHelper:
           "<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>"
+<<<<<<< HEAD
       },
       username: "",
       password: ""
+=======
+      }
+>>>>>>> dev-mm
     };
   },
   methods: {
@@ -90,6 +111,7 @@ export default {
         })
           .then(data => {
             console.log(data);
+<<<<<<< HEAD
             if (data.status == 200) {
               // if(){
               //   this.$router.push({ path: "/index" });
@@ -97,6 +119,12 @@ export default {
               //   this.$toast("账号或密码输入错误")
               // }
               this.$router.push({ path: "/index" });
+=======
+            if (data.data.code == 1) {
+              this.$router.push({ path: "/index" });
+            } else {
+              this.$toast("账号或密码输入错误");
+>>>>>>> dev-mm
             }
 
             let arr = data.list;
@@ -124,7 +152,33 @@ export default {
             console.log(error);
           });
       } //else  --end
-    } //login() --end
+    }, //login() --end
+
+    rememberPwd() {
+      this.checked = true;
+      // 账号密码保存到localStorage中
+      localStorage.setItem(
+        "userLoginInfo",
+        JSON.stringify({
+          username: this.username,
+          password: this.password
+        })
+      );
+    }
+  },
+  mounted() {
+    // 当用户进入浏览器时,首先判断localStorage中是否有“userLoginInfo”，
+    // 如果有数据就加载到对应的标签元素位置   这个操作应该放在mounted中
+    this.mmInfo = JSON.parse(localStorage.getItem("userLoginInfo"));
+    console.log(this.mmInfo);
+    console.log(this.mmInfo.password);
+    console.log(this.mmInfo.username);
+    if (localStorage.getItem("userLoginInfo") !== null) {
+      this.username = this.mmInfo.username;
+      this.password = this.mmInfo.password;
+      console.log(this.username);
+      console.log(this.password);
+    }
   }
 };
 </script>
@@ -141,7 +195,7 @@ export default {
 #login_middle {
   width: 17rem;
   height: 16rem;
-  margin-left: 1.5rem;
+  margin-left: 3rem;
 }
 #top {
   display: flex;
@@ -175,9 +229,9 @@ export default {
 #login_bottom h6 {
   margin: 1rem 7rem;
 }
-#shares {
-  margin-left: 5.5rem;
-}
+/* #shares {
+  margin-left: 2rem;
+} */
 #login_bottom p {
   margin: 1rem 3.5rem;
 }

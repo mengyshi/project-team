@@ -29,7 +29,10 @@
 	</div>
 </template>
 <script>
+<<<<<<< HEAD
 import axios from "axios"
+=======
+>>>>>>> dev-mm
 	export default{
 		data(){
 			return{
@@ -39,12 +42,18 @@ import axios from "axios"
 		},
 		methods:{
 			onClickLeft() {
+<<<<<<< HEAD
 				this.$router.go(-1);
+=======
+				this.$router.go(-1)
+
+>>>>>>> dev-mm
     		},
       		tap(){
     			console.log("sssss")
     			this.$router.push("/writecomment")
     		}
+<<<<<<< HEAD
 		},
 		mounted(){
 			axios({
@@ -55,6 +64,8 @@ import axios from "axios"
 		    }).catch((err)=>{
 		    	console.log(err)
 		    })
+=======
+>>>>>>> dev-mm
 		}
 	}
 </script>

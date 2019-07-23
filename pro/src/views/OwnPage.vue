@@ -1,5 +1,9 @@
 <template>
+<<<<<<< HEAD
 	<div class="box">
+=======
+	<div>
+>>>>>>> dev-mm
 		<header id="header" class="">
 			<van-nav-bar style="font-size:1.6rem">
 				
@@ -136,9 +140,12 @@
 	};
 </script>
 <style>
+<<<<<<< HEAD
 	.box{
 		margin-bottom: 1rem;
 	}
+=======
+>>>>>>> dev-mm
 	#header{
 		width:100%;
 		height: 11rem;
