@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     onSearch() {
-      
+     this.$router.push({path:'SearchEnd',query:{text:this.value}})
     },
     onCancel() {
         this.$router.go(-1)

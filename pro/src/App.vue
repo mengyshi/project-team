@@ -13,8 +13,8 @@ export default {
     return {
       active: 0
     };
-  },
-  name: "App"
+  }
+  // name: "App"
 };
 </script>
 
