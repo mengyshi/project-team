@@ -9,7 +9,7 @@ import Recommend from "./wangna-router/Recommend";
 import Listingdetail from "./wangna-router/Listingdtail";
 // 探索体验页面
 import Exploringexperience from "./wangna-router/Exploringexperience";
-import index from "../views/index";
+// import index from "../views/index";
 // 旅行故事详情
 import Travelstory from "./wangna-router/Travelstory";
 //搜索结果页面
