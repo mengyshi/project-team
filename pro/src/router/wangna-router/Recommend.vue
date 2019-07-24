@@ -91,8 +91,8 @@
         <div class="con-travel-story">
           <p class="con-travel-title">精彩旅行故事</p>
           <van-grid :border="false" :column-num="2">
-            <van-grid-item to="/Travelstory">
-              <van-image src="https://img.yzcdn.cn/vant/apple-1.jpg" />
+            <van-grid-item to="">
+              <van-image src="http://img0.imgtn.bdimg.com/it/u=3581979092,1503649394&fm=26&gp=0.jpg" />
               <p>名称</p>
               <p>描述</p>
               <p>
@@ -102,8 +102,8 @@
                 <van-icon name="chat-o" size="14" />
               </p>
             </van-grid-item>
-            <van-grid-item to="/Travelstory">
-              <van-image src="https://img.yzcdn.cn/vant/apple-2.jpg" />
+            <van-grid-item to="">
+              <van-image src="http://img2.imgtn.bdimg.com/it/u=2684910209,2942734213&fm=26&gp=0.jpg" />
               <p>名称</p>
               <p>描述</p>
               <p>
@@ -268,6 +268,9 @@ export default {
 /* 精彩旅行故事 */
 .con-travel-story {
   margin-bottom: 20px;
+}
+.con-travel-story img{
+  height: 98px;
 }
 .con-travel-title {
   text-align: left;
