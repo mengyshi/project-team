@@ -28,14 +28,11 @@ import Listingdetail from "./wangna-router/Listingdtail";
 // 探索体验页面
 import Exploringexperience from "./wangna-router/Exploringexperience";
 // import index from "../views/index";
-// 旅行故事详情
-import Travelstory from "./wangna-router/Travelstory";
 //搜索结果页面
 import SearchEnd from "./wangna-router/SearchEnd";
 // 体验详情页面
 import Experiencedetails from "./wangna-router/Experiencedetails";
-
-import HelloWorld from "@/components/HelloWorld";
+// import HelloWorld from "@/components/HelloWorld";
 import Order from "@/views/Order";
 import Vant from "vant";
 import OrderList from "@/views/OrderList";
@@ -157,11 +154,6 @@ const router = new Router({
           path: "/Exploringexperience",
           name: "Exploringexperience",
           component: Exploringexperience,
-        },
-        {
-          path: "/Travelstory",
-          name: "Travelstory",
-          component: Travelstory,
         },
         {
           path: '/find',

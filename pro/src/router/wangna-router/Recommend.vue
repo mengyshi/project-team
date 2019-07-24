@@ -35,92 +35,68 @@
         <div class="con-lunbo">
           <van-swipe :autoplay="3000" indicator-color="white">
             <van-swipe-item>
-
               <van-image
                 width="100%"
                 height="100%"
-                src="https://img.yzcdn.cn/vant/cat.jpeg"
-              />
-            </van-swipe-item>
-            <van-swipe-item>
-              <van-image
-                width="100%"
-                height="100%"
-                src="https://img.yzcdn.cn/vant/cat.jpeg"
-              />
-            </van-swipe-item>
-            <van-swipe-item>
-             <van-image
-                width="100%"
-                height="100%"
-                src="https://img.yzcdn.cn/vant/cat.jpeg"
+                src="http://cdn2.tmmtours.cn/201907151520/picture/o1cn018sfoup1eqdgzgpmj5_!!2270913865.jpg"
               />
             </van-swipe-item>
             <van-swipe-item>
               <van-image
                 width="100%"
                 height="100%"
-                src="https://img.yzcdn.cn/vant/cat.jpeg"
+                src="http://wdxx.ynkl003.com/upfiles/image/20181217/20181217233393089308.jpg"
               />
-
-              <van-image width="100%" height="100%" src="https://img.yzcdn.cn/vant/cat.jpeg" />
             </van-swipe-item>
             <van-swipe-item>
-              <van-image width="100%" height="100%" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+              <van-image
+                width="100%"
+                height="100%"
+                src="http://wdxg.ynkl003.com/upfiles/image/20190403/20190403134417801780.jpg"
+              />
             </van-swipe-item>
             <van-swipe-item>
-              <van-image width="100%" height="100%" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-            </van-swipe-item>
-            <van-swipe-item>
-              <van-image width="100%" height="100%" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-
+              <van-image
+                width="100%"
+                height="100%"
+                src="http://wdxx.ynkl003.com/upfiles/image/20190320/20190320160859135913.jpg"
+              />
             </van-swipe-item>
           </van-swipe>
         </div>
         <!-- 房源 -->
         <div class="con-listing">
           <p>房源推荐</p>
-          <van-row gutter="20" type="flex" justify="space-around" centered="true">
-            <van-col span="6">
-              <router-link to="/Listingdetail">
-                <van-card class="listing" tag="民宿" thumb="https://img.yzcdn.cn/vant/t-thirt.jpg" />
+          <div class="con-listing-num">
+            <div v-for="item in list" :key="item.id">
+              <router-link :to="{name:'Listingdetail',query:{text:item.id}}">
+                <van-card class="listing" :tag="item.hotel" :thumb="item.imgpath" />
               </router-link>
-            </van-col>
-            <van-col span="6">
-              <router-link to="/Listingdetail">
-                <van-card class="listing" tag="酒店" thumb="https://img.yzcdn.cn/vant/t-thirt.jpg" />
-              </router-link>
-            </van-col>
-            <van-col span="6">
-              <router-link to="/Listingdetail">
-                <van-card class="listing" tag="短租" thumb="https://img.yzcdn.cn/vant/t-thirt.jpg" />
-              </router-link>
-            </van-col>
-          </van-row>
+            </div>
+          </div>
         </div>
         <!-- 探索体验 -->
         <div class="con-experience">
           <p>探索体验</p>
-          <van-grid :column-num="3" gutter="10" :border="false">
-            <van-grid-item
-              v-for="value in 3"
-              :key="value"
-              icon="photo-o"
-              text="文字"
-              to="/Exploringexperience"
-            />
-          </van-grid>
+          <ul>
+            <li v-for="item in list1" :key="item.id">
+              <router-link
+                :to="{path:'Exploringexperience',name:'Exploringexperience',query:{id:item.id}}"
+              >
+                <van-image :src="item.imgpath"></van-image>
+              </router-link>
+              <p>{{item.hotel}}</p>
+            </li>
+          </ul>
         </div>
         <!-- 精彩旅行故事 -->
         <div class="con-travel-story">
-          <p>精彩旅行故事</p>
+          <p class="con-travel-title">精彩旅行故事</p>
           <van-grid :border="false" :column-num="2">
-
-            <van-grid-item to="/Travelstory">
-
-            <van-grid-item to="./trip">
-
-              <van-image src="https://img.yzcdn.cn/vant/apple-1.jpg" />
+            <van-grid-item to>
+              <van-image
+                src="http://img0.imgtn.bdimg.com/it/u=3581979092,1503649394&fm=26&gp=0.jpg"
+              />
               <p>名称</p>
               <p>描述</p>
               <p>
@@ -130,12 +106,10 @@
                 <van-icon name="chat-o" size="14" />
               </p>
             </van-grid-item>
-
-            <van-grid-item to="/Travelstory"/>
-
-            <van-grid-item to="/trip"/>
-
-              <van-image src="https://img.yzcdn.cn/vant/apple-2.jpg" />
+            <van-grid-item to>
+              <van-image
+                src="http://img2.imgtn.bdimg.com/it/u=2684910209,2942734213&fm=26&gp=0.jpg"
+              />
               <p>名称</p>
               <p>描述</p>
               <p>
@@ -179,7 +153,9 @@ export default {
         { text: "上海", value: 1 },
         { text: "广州", value: 2 }
       ],
-      value: ""
+      value: "",
+      list: [],
+      list1: []
     };
   },
   methods: {
@@ -198,14 +174,21 @@ export default {
     }
   },
   mounted() {
-    // axios
-    //   .get("http://jun4gv.natappfree.cc/hotel/findHotel.do")
-    //   .then(function(response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function(error) {
-    //     console.log(error);
-    //   });
+    let _this = this;
+    axios
+      .get("http://10.8.157.8:8080/hotel/findHotel.do")
+      .then(function(response) {
+        for (let i = 0; i < response.data.info.length; i++) {
+          if (i < 3) {
+            _this.list.push(response.data.info[i]);
+          } else {
+            _this.list1.push(response.data.info[i]);
+          }
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 };
 </script>
@@ -241,6 +224,9 @@ export default {
 .con-lunbo {
   margin-bottom: 20px;
 }
+.con-lunbo img {
+  height: 282px;
+}
 /* 房源 */
 .con-listing {
   margin-bottom: 20px;
@@ -251,6 +237,10 @@ export default {
   height: 30px;
   line-height: 30px;
 }
+.con-listing .con-listing-num {
+  display: flex;
+  justify-content: space-around;
+}
 .con-listing .listing {
   height: 90px;
   padding: 0px;
@@ -259,7 +249,7 @@ export default {
 }
 /* 探索体验 */
 .con-experience {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .con-experience p {
   height: 30px;
@@ -267,9 +257,29 @@ export default {
   text-indent: 10px;
   text-align: left;
 }
+.con-experience ul {
+  padding: 0 10px;
+  display: flex;
+  height: 110px;
+  justify-content: space-around;
+}
+.con-experience ul li {
+  display: flex;
+  flex-direction: column;
+}
+.con-experience ul li img {
+  height: 100px;
+  width: 100px;
+}
 /* 精彩旅行故事 */
 .con-travel-story {
   margin-bottom: 20px;
+}
+.con-travel-story img {
+  height: 98px;
+}
+.con-travel-title {
+  text-align: left;
 }
 .con-travel-story p {
   height: 30px;
@@ -302,7 +312,5 @@ export default {
   color: #000;
   font-size: 14px;
 }
-
-
 </style>
 

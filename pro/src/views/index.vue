@@ -19,6 +19,21 @@ export default {
     return {
       active: 0
     };
+  },
+  mounted() {
+    console.log(this.$route.path)
+    if (this.$route.path == "/find") {
+      this.active = 1;
+    }
+    if (this.$route.path=='/order') {
+      this.active = 2;
+    }
+    if (this.$route.path == "/ownpage") {
+      this.active = 3;
+    }
+    if(this.$route.path=='/Recommend'){
+      this.active=0;
+    }
   }
 };
 </script>
