@@ -1,7 +1,7 @@
 <template>
 	<div id="main-box">
 		<div id="main-left">
-			<h2>这是用户名</h2>
+			<h2>{{username}}</h2>
 			<div>
 				<van-icon name="sign"/> 
 	  			<span>高级会员</span>
@@ -19,19 +19,19 @@
 export default{
 	data(){
 		return{
-			usernam:"",
+			username:"",
 		}
 		
 	},
 	mounted(){
-		var username = localStorage.getItem("info").username;
+		var username = JSON.parse(localStorage.getItem("info")).username;
 		this.username=username;
 		console.log(username);
 
 	},
 	methods:{
 		tap1(){
-	  		this.$router.push("/personaldata")
+	  		this.$router.push({path:"/personaldata",query:{username:this.username}})
 	  	},
 	}
 

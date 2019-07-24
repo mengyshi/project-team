@@ -16,9 +16,6 @@
         <van-cell-group>
           <van-field
             v-model="username"
-
-            value="username"
-
             required
             clearable
             label="用户名"
@@ -26,18 +23,7 @@
             placeholder="请输入用户名"
             @click-right-icon="$toast('question')"
           />
-
           <van-field v-model="password" type="password" label="密码" placeholder="请输入密码" required />
-
-          <van-field
-            v-model="password"
-            ref="password"
-            type="password"
-            label="密码"
-            placeholder="请输入密码"
-            required
-          />
-
         </van-cell-group>
       </div>
 
@@ -86,42 +72,41 @@ export default {
         wechatQrcodeTitle: "微信扫一扫：分享",
         wechatQrcodeHelper:
           "<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>"
-
       },
       username: "",
       password: ""
-
-      }
-
-    
+    };
   },
-  methods:{
+  methods: {
     ...mapMutations(["changeLogin"]),
     loginc() {
-       if (this.username === "" || this.password === "") {
+      if (this.username === "" || this.password === "") {
         alert("账号或密码不能为空");
-      }else {
+      } else {
         axios({
           url: "http://10.8.157.41:8080/user/login",
           params: {
             username: this.username,
             password: this.password
           }
-        }).then(data => {
-           console.log(data);
-           if (data.status == 200) {
+        })
+          .then(data => {
+            console.log(data);
+            if (data.status == 200) {
+              var obj={username:data.data.info};
+              console.log(obj)
+              if(localStorage.getItem("info")){
+                console.log('info存在');
+                localStorage.setItem("info",JSON.stringify(obj))
+              }else{
+                localStorage.setItem("info",JSON.stringify(obj))
+              }
               // if(){
               //   this.$router.push({ path: "/index" });
               // }else{
               //   this.$toast("账号或密码输入错误")
               // }
               this.$router.push({ path: "/index" });
-
-            if (data.data.code == 1) {
-              this.$router.push({ path: "/index" });
-            } else {
-              this.$toast("账号或密码输入错误");
-
             }
 
             let arr = data.list;
@@ -144,14 +129,13 @@ export default {
               // alert("账号或密码错误");
               console.log("账号或密码错误");
             }
-          }
-
-
-        }).catch(error => {
+          })
+          .catch(error => {
             console.log(error);
           });
-      }
-    },
+      } //else  --end
+    }, //login() --end
+
     rememberPwd() {
       this.checked = true;
       // 账号密码保存到localStorage中
@@ -163,9 +147,8 @@ export default {
         })
       );
     }
-
   },
-   mounted() {
+  mounted() {
     // 当用户进入浏览器时,首先判断localStorage中是否有“userLoginInfo”，
     // 如果有数据就加载到对应的标签元素位置   这个操作应该放在mounted中
     this.mmInfo = JSON.parse(localStorage.getItem("userLoginInfo"));
@@ -179,24 +162,7 @@ export default {
       console.log(this.password);
     }
   }
-
-
-}
-
-    
-    
-      
-        
-          
-           
-
-
-        
-
-    
-  
- 
-
+};
 </script>
 <style>
 #wrap {

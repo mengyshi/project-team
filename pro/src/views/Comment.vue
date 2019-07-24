@@ -9,10 +9,10 @@
 		/>
 		<div class="comment"></div>
 		<van-card
-		  
-		  title="订单编号："
-		  desc="你的评价："  
-		  thumb="https://img.yzcdn.cn/vant/t-thirt.jpg"
+		  v-for="item in lists"
+	  :title="item.ordernum"
+		  :desc="item.myappraise"  
+		  thumb="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2813996958,1618626128&fm=26&gp=0.jpg"
 		/>
 		<van-card
 		  desc="描述信息"  
@@ -35,7 +35,8 @@ import axios from "axios"
 	export default{
 		data(){
 			return{
-				message:""
+				message:"",
+				lists:[],
 
 			}
 		},
@@ -44,8 +45,7 @@ import axios from "axios"
 
 				this.$router.go(-1);
 
-				this.$router.go(-1)
-
+				
 
     		},
       		tap(){
@@ -59,10 +59,21 @@ import axios from "axios"
 		      url:"http://10.8.157.18:8080/appr/myapprshow.do",
 		      method:"get",
 		    }).then((data)=>{
+		    	this.lists=data.data.data;
+		    	console.log(this.lists)
+		    }).catch((err)=>{
+		    	console.log(err)
+		    });
+		    axios({
+		      url:"http://10.8.157.18:8080/appr/addapprshow.do",
+		      method:"get",
+		      params:{ordernum:1999999}
+		    }).then((data)=>{
+		    	//this.lists=data.data.data;
 		    	console.log(data)
 		    }).catch((err)=>{
 		    	console.log(err)
-		    })
+		    });
 
 		}
 	}

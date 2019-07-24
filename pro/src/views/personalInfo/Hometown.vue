@@ -1,8 +1,7 @@
 <template>
 	<div>
-		<van-panel title="家乡" desc="请在下面选择你的家乡" >
-
-		<input type="text" v-model="val"/>
+		<van-panel title="家乡" desc="请在下面选择你的家乡" class="ipt">
+		<input  type="text" v-model="val"/>
 
 		  <van-area :area-list="areaList" :columns-num="1"   @confirm="confirm"/>
 		  

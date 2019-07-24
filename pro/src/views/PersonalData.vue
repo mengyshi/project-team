@@ -42,73 +42,51 @@
 		</div>
 		</van-dialog>
 
-		<span class="touxiang">	
-		</span>
-		<span>修改头像</span>
+		
 
 	</div>
 
 	<div id="content">
 			
 				<van-panel title="昵称" >
-
-				 <div class="content"><em>{{info.username}}</em><span @click="tap('username')">&gt;</span></div>
+				 <div class="contents"><em>username:{{info.username}}</em><span @click="tap('username')">&gt;</span></div>
 
 				</van-panel>
-			
 			
 				<van-panel title="性别">
 
-					<div class="content"><em>{{info.sex}}</em><span @click="tap('sex')">&gt;</span></div>
+					<div class="contents"><em>sex:{{info.sex}}</em><span @click="tap('sex')">&gt;</span></div>
 				</van-panel>
 
 				<van-panel title="常用手机">
-					<div class="content"><em>{{info.tel}}</em><span @click="tap('telphone')">&gt;</span></div>
-
-					<div class="content"><em>内容</em><span @click="tap('sex')">&gt;</span></div>
+					<div class="contents"><em>tel:{{info.tel}}</em><span @click="tap('telphone')">&gt;</span></div>
 				</van-panel>
-
-				<van-panel title="常用手机">
-					<div class="content"><em>内容</em><span @click="tap('telphone')">&gt;</span></div>
-
-				</van-panel>
-			
 			
 				<van-panel title="出生日期">
 
-					<div class="content"><em>{{info.birthday}}</em><span @click="tap('birthday')">&gt;</span></div>
-
-					<div class="content"><em>内容</em><span @click="tap('birthday')">&gt;</span></div>
+					<div class="contents"><em>birthday:{{info.birthday}}</em><span @click="tap('birthday')">&gt;</span></div>
 
 				</van-panel>
 			
-				<van-panel title="身份证号码"  >
-					<div class="content"><em>411**************X</em><span @click="tap('idcard')">&gt;</span></div>
+				<van-panel title="身份证号码">
+					<div class="contents"><em>411**************X</em><span @click="tap('idcard')">&gt;</span></div>
 				</van-panel>
 			
-				<van-panel title="故乡"   >
+				<van-panel title="故乡">
+					<div class="contents"><em>hometown:{{info.place}}</em><span @click="tap('hometown')">&gt;</span></div>
+				</van-panel>
+			
+				<van-panel title="所在城市">
+					<div class="contents"><em>city:{{info.city}}</em><span @click="tap('city')">&gt;</span></div>
+					
+				</van-panel>
+			
+				<van-panel title="邮箱地址">
+					<div class="contents">eamil:<em>{{info.email}}</em><span @click="tap('mail')">&gt;</span></div>
 
-					<div class="content"><em>{{info.place}}</em><span @click="tap('hometown')">&gt;</span></div>
+					
 				</van-panel>
-			
-				<van-panel title="所在城市"  >
-					<div class="content"><em>{{info.place}}</em><span @click="tap('city')">&gt;</span></div>
-				</van-panel>
-			
-				<van-panel title="邮箱地址"  >
-					<div class="content"><em>{{info.email}}</em><span @click="tap('mail')">&gt;</span></div>
-
-					<div class="content"><em>内容</em><span @click="tap('hometown')">&gt;</span></div>
-				</van-panel>
-			
-				<van-panel title="所在城市"  >
-					<div class="content"><em>内容</em><span @click="tap('city')">&gt;</span></div>
-				</van-panel>
-			
-				<van-panel title="邮箱地址"  >
-					<div class="content"><em>内容</em><span @click="tap('mail')">&gt;</span></div>
-
-				</van-panel>		
+				
 		</div>
 
 	
@@ -132,8 +110,8 @@ import axios from "axios"
 			},
 			
 			tap(nextpath){
-				this.$router.push(""+nextpath);
-
+				var username=this.$route.query.username;
+				this.$router.push({path:"/"+nextpath,query:{username:username}});
 
 			},
 			shows(){
@@ -142,23 +120,21 @@ import axios from "axios"
 			updatephoto(){
 				this.$router.push("/uploderimg")
 			}
-
 		},
 		mounted(){
+			var username=this.$route.query.username;
+			console.log(username)
 
 			axios({
 		      url:"http://10.8.157.18:8080/set/personage.do",
 		      method:"get",
-		      params:{username:"华晨宇"}
+		      params:{username:username}
 
 		    }).then((data)=>{
 		      var lists=data.data.data[0];
-		      console.log(lists);
+		      console.log(data);
 		      this.info=lists;
-		      // var list={id:id,name:lists.name,tel:lists.phone,addressDetail:lists.detailadds,areaCode:lists.areaCode}
-	       // 		console.log(list)
-	       // this.address=list;
-	       // console.log(this.address)
+		      
 		  })
 			}
 
@@ -201,20 +177,21 @@ import axios from "axios"
 
 	}
 
-	.content{
+	.contents{
 		font-size:1.2rem;
 		margin-left:11.5px;
 		hright:3.5rem;
 		line-height:3.5rem;
 		color:#cecece
 	}
-	.content em{
+	.contents em{
 		font-style:normal;
 	}
-	.content span{
+	.contents span{
 		float:right;
-		color:#cecece;
-		margin-right:2rem
+		color:#000;
+		
+		margin-right:2rem;
 	}
 
 	.photo{
