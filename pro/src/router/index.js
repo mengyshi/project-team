@@ -1,5 +1,23 @@
-import Vue from "vue";
-import Router from "vue-router";
+
+import Vue from 'vue'
+import Router from 'vue-router'
+
+import find from '../views/find'
+
+import details from '../views/details'  //旅游攻略 房东故事详情
+import share from "../views/share"  //分享页面
+import selectpage from "../views/selectpage"  //搜索页面
+import cityhotellist from "../views/cityhotellist"  //城市酒店页
+import hoteldetails from "../views/hoteldetails"  //引入酒店详情页
+import hotelbook from "../components/hotelbook" //引入酒店详情页 酒店信息组件
+import usercomment from "../components/usercomment" //引入酒店详情页 住客评价组件
+
+import bookpay from "../views/bookpay"  //订单支付页
+import paysuccess from "../views/paysuccess"  //支付成功订单查看页
+import apitest from "../views/apitest"  //接口测试页
+import axiostest from "../views/axiostest"  //测试局部刷新
+
+
 
 // 头部搜索
 import indexSearch from "./wangna-router/indexSearch";
@@ -46,7 +64,7 @@ import Hometown from "@/views/personalInfo/Hometown";
 import "vant/lib/index.css";
 
 import Uploderimg from "@/views/UplodeImg"
-    
+
 
 Vue.use(Vant);
 
@@ -56,7 +74,7 @@ import "vant/lib/index.css";
 import LoginC from "@/views/LoginC.vue";
 import LoginP from "@/views/LoginP.vue";
 import Register from "@/views/Register.vue";
-import Index from "@/views/Index.vue";
+// import Index from "@/views/Index.vue";
 import TripStory from "@/views/TripStory.vue";
 import StoryDetail from "@/views/StoryDetail.vue";
 import UpdatePwd from "@/views/UpdatePwd";
@@ -65,7 +83,57 @@ Vue.use(Router);
 
 const router = new Router({
   routes: [
+    // {
+    //   path: '/',
+    //   redirect: '/find'
+    // },
+
     {
+      path: '/details/:from/:id',
+      component: details,
+    },
+    {
+      path: "/share",
+      component: share
+    },
+    {
+      path: '/select',
+      component: selectpage
+    },
+    {
+      path: '/cityhotellist',
+      component: cityhotellist
+    },
+    {
+      path: '/api',
+      component: apitest
+    },
+    {
+      path: '/axios',
+      component: axiostest
+    },
+    {
+      path: '/hoteldetails/:id',
+      component: hoteldetails,
+      children: [
+        {
+          path: '/hotelbook/:id',
+          name: hotelbook,
+          component: hotelbook
+        },
+        {
+          path: '/usercomment',
+          name: "usercomment",
+          component: usercomment
+        }
+      ]
+    },
+    {
+      path: '/bookpay',
+      component: bookpay
+    },
+    {
+
       path: "/",
       component: Recommend,
       name: "Recommend",
@@ -98,6 +166,10 @@ const router = new Router({
           path: "/Travelstory",
           name: "Travelstory",
           component: Travelstory,
+        },
+        {
+          path: '/find',
+          component: find,
         },
       ],
     },
@@ -210,9 +282,9 @@ const router = new Router({
     },
     {
 
-      path:"/uploderimg",
-      component:Uploderimg
-    },{
+      path: "/uploderimg",
+      component: Uploderimg
+    }, {
 
       path: "/detail",
       component: StoryDetail,
@@ -220,6 +292,9 @@ const router = new Router({
     {
       path: "/update",
       component: UpdatePwd,
+    }, {
+      path: "/paysuccess",
+      component: paysuccess
     }
 
   ]
