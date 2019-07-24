@@ -65,16 +65,12 @@ import "vant/lib/index.css";
 
 import Uploderimg from "@/views/UplodeImg"
 
-
-Vue.use(Vant);
-
-//  Kate_man
 import "vant/lib/index.css";
 
 import LoginC from "@/views/LoginC.vue";
 import LoginP from "@/views/LoginP.vue";
 import Register from "@/views/Register.vue";
-// import Index from "@/views/Index.vue";
+import index from "@/views/index"
 import TripStory from "@/views/TripStory.vue";
 import StoryDetail from "@/views/StoryDetail.vue";
 import UpdatePwd from "@/views/UpdatePwd";
