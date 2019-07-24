@@ -10,7 +10,7 @@ import Listingdetail from './wangna-router/Listingdtail'
 import Exploringexperience from './wangna-router/Exploringexperience'
 import index from '../views/index'
 // 旅行故事详情
-import Travelstory from './wangna-router/Travelstory'
+// import Travelstory from './wangna-router/Travelstory'
 //搜索结果页面
 import SearchEnd from './wangna-router/SearchEnd'
 // 体验详情页面
@@ -39,11 +39,11 @@ export default new Router({
           name: 'Exploringexperience',
           component: Exploringexperience
         },
-        {
-          path: '/Travelstory',
-          name: 'Travelstory',
-          component: Travelstory
-        }
+        // {
+        //   path: '/Travelstory',
+        //   name: 'Travelstory',
+        //   component: Travelstory
+        // }
       ]
     }, {
       path: '/Listingdetail',
