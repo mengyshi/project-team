@@ -12,7 +12,7 @@
             <router-link
               :to="{path:'Experiencedetails',name:'Experiencedetails',query:{id:item.id}}"
             >
-              <van-image src="https://img.yzcdn.cn/vant/cat.jpeg" />
+              <van-image src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2525537183,3948077918&fm=26&gp=0.jpg" />
             </router-link>
             <p>{{item.shopname}}</p>
             <p>{{item.detail}}</p>
