@@ -6,6 +6,7 @@
 		  left-arrow
 		  @click-left="onClickLeft"
 		/>
+		<div v-if="num">
 		<div class="show">
 			<van-image
 			  width="100%"
@@ -45,7 +46,7 @@
 				
 			</div>
 		</div>
-
+	</div>
 	</div>
 </template>
 <script>
@@ -55,6 +56,7 @@ import axios from "axios"
 			return{
 				list:[],
 				img:"",
+				num:false
 			}
 		},
 		methods:{
@@ -71,6 +73,10 @@ import axios from "axios"
 				console.log(data);
 					_this.img=data.data.info[0].imgUrl;
 			})
+			if(localStorage.getItem("info")){
+	    	this.num=true
+
+	    }
 			// 
 			// $.ajax({
 			// 	url: 'http://10.8.157.4:8080//trip/list.do',

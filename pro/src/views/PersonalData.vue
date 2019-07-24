@@ -145,7 +145,7 @@ import axios from "axios"
 
 
 
-<style>
+<style >
 	#app{
 		text-align:left;
 	}

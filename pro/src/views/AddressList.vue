@@ -7,7 +7,7 @@
 		  @click-left="onClickLeft"
 		 
 		/>
-		<div class="address">
+		<div class="address" v-if="num">
 			<van-address-list
 			  v-model="chosenAddressId"
 			  :list="list"
@@ -38,6 +38,7 @@
           address: '浙江省杭州市拱墅区莫干山路 50 号'
         }
       ],
+      num:false,
     }
   },
 
@@ -80,6 +81,10 @@
       }
        this.list=datas;
   })
+    if(localStorage.getItem("info")){
+        this.num=true
+
+      }
 }
 
   // $.ajax({

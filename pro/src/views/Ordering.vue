@@ -79,6 +79,7 @@
 	      method:"get",
 	      params:{}
 	    }).then((data)=>{
+	    	console.log(data)
 	    	var datas=data.data.data;
 	    	
 

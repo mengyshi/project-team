@@ -35,7 +35,7 @@ import axios from "axios"
 			axios({
 				url:"http://10.8.157.18:8080/set/uptaper.do",
 				method:"get",
-				params:{id:1,username:username,birthday:this.val},
+				params:{id:2,birthday:this.val},
 			}).then((data)=>{
 				console.log(data);
 			}).catch(data=>{

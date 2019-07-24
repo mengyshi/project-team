@@ -6,10 +6,10 @@
 		<div class="orderlist">		
 		<van-tabs v-model="active" >
 		  <van-tab title="进行中">
-		  	<v-ordering></v-ordering>
+		  	<v-ordering v-if="num"></v-ordering>
 		  </van-tab>
 		  <van-tab title="已完成" >
-		  		<v-orderlist></v-orderlist>
+		  		<v-orderlist v-if="num"></v-orderlist>
 		  </van-tab>
 		 
 		</van-tabs>
@@ -31,7 +31,8 @@
 	export default {
 	  data() {
 	    return {
-	      active: 2
+	      active: 2,
+	      num:false,
 	    };
 	  },
 	  components:{
@@ -47,7 +48,11 @@
 	      params:{}
 	    }).then((data)=>{
 	    	console.log(data)
-	    })
+	    });
+	    if(localStorage.getItem("info")){
+	    	this.num=true
+
+	    }
 	 
 	}
  }

@@ -14,9 +14,15 @@
 	
 </template>
 <script>
+ import axios from "axios"
+ import city from "./personalInfo/City.vue"
+ 
+
 	export default{
 		data(){
 			return{
+				info:{}
+
 
 			}
 		},
@@ -25,10 +31,13 @@
 				this.$router.go(-1);
 
 			},
+
 			onClickRight(){
-				console.log("保存")
+				console.log("保存成功")
+				
 			}
-		}
+		},
+		
 
 	}
 </script>
