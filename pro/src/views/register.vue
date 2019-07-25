@@ -64,6 +64,9 @@ export default {
     };
   },
   methods: {
+    onClickLeft(){
+      this.$router.go(-1);
+    },
     // 用户名测试
     userTest() {
       if (!this.username) {

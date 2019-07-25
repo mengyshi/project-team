@@ -24,7 +24,7 @@
 				</van-panel>
 			</div>
 			<div class="cont">
-				<van-panel title="退出登录"  status="&gt;" >
+				<van-panel title="退出登录"  status="&gt;"  @click="tap()">
 				</van-panel>
 			</div>
 			
@@ -33,7 +33,7 @@
 	</div>
 </template>
 <script>
-
+import {Toast} from "vant"
 	export default{
 		data(){
 			return{
@@ -42,6 +42,15 @@
 		},
 		methods:{
 			onClickLeft(){
+				this.$router.go(-1);
+
+
+			},
+
+			tap(){
+				localStorage.removeItem("info");
+				Toast("退出成功！")
+
 				this.$router.go(-1);
 
 			}

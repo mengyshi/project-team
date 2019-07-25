@@ -99,6 +99,14 @@ export default {
           .then(data => {
             console.log(data);
             if (data.data.code == 1) {
+               var obj={username:data.data.info};
+                console.log(obj)
+              if(localStorage.getItem("info")){
+                console.log('info存在');
+                localStorage.setItem("info",JSON.stringify(obj))
+              }else{
+                localStorage.setItem("info",JSON.stringify(obj))
+              }
               this.$router.push({ path: "/index" });
             } else {
               this.$toast("账号或密码输入错误");
@@ -115,6 +123,7 @@ export default {
               if (this.username == username && this.password == password) {
                 this.$router.push("/index");
                 console.log("登录成功");
+
                 flag = true;
                 return;
               }

@@ -52,7 +52,8 @@
 </template>
 <script>
 	import UserLogin from "./UserLogin";
-	import Unlogin from "./Nologin.vue"
+	import Unlogin from "./Nologin.vue";
+	
 	export default {
 	  data() {
 	    return {
@@ -113,6 +114,7 @@
 	  	"v-login":UserLogin,
 	  	"v-unlogin":Unlogin
 	  },
+
 	  mounted() {
 	    this.loading = false;
 	    if(localStorage.getItem("info")){
