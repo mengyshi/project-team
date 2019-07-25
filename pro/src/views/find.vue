@@ -5,16 +5,20 @@
       <!-- 引入上方标签页 通过此处跳转至 发现对应子页 -->
       <van-tabs v-model="active" @click="onClick">
         <van-tab title="旅游攻略">
-          <tourism />
+          <!-- <tourism /> -->
+          <router-view></router-view>
         </van-tab>
         <van-tab title="出行专题">
-          <travel />
+          <!-- <travel /> -->
+          <router-view></router-view>
         </van-tab>
         <van-tab title="房东故事">
-          <house />
+          <!-- <house /> -->
+          <router-view></router-view>
         </van-tab>
         <van-tab title="热门评论">
-          <comment />
+          <!-- <comment /> -->
+          <router-view></router-view>
         </van-tab>
       </van-tabs>
     </div>
@@ -36,29 +40,28 @@ export default {
   },
   methods: {
     onClick(name, title) {
-      // console.log(name, title);
-      // switch (name) {
-      //   case 0:
-      //     this.$router.push("/tourism");
-      //     break;
-      //   case 1:
-      //     this.$router.push("/travel");
-      //     break;
-      //   case 2:
-      //     this.$router.push("/house");
-      //     break;
-      //   case 3:
-      //     this.$router.push("/comment");
-      //     break;
-      // }
+      switch (name) {
+        case 0:
+          this.$router.push("/tourism");
+          break;
+        case 1:
+          this.$router.push("/travel");
+          break;
+        case 2:
+          this.$router.push("/house");
+          break;
+        case 3:
+          this.$router.push("/comment");
+          break;
+      }
     }
-  },
-  components: {
-    tourism,
-    travel,
-    house,
-    comment
   }
+  // components: {
+  //   tourism,
+  //   travel,
+  //   house,
+  //   comment
+  // }
 };
 </script>
 

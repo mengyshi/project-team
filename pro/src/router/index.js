@@ -2,10 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import find from '../views/find'
-// import tourism from "../components/tourism" //旅游攻略
-// import travel from "../components/travel"  //出行专题
-// import house from "../components/house"  //房东故事
-// import comment from "../components/comment"  //热门评论
+import tourism from "../components/tourism" //旅游攻略
+import travel from "../components/travel"  //出行专题
+import house from "../components/house"  //房东故事
+import comment from "../components/comment"  //热门评论
 
 import details from '../views/details'  //旅游攻略 房东故事详情
 import share from "../views/share"  //分享页面
@@ -32,6 +32,25 @@ export default new Router({
     {
       path: '/find',
       component: find,
+      redirect: '/tourism',
+      children: [
+        {
+          path: '/tourism',
+          component: tourism
+        },
+        {
+          path: '/travel',
+          component: travel
+        },
+        {
+          path: '/house',
+          component: house
+        },
+        {
+          path: '/comment',
+          component: comment
+        },
+      ]
     },
     {
       path: '/details/:from/:id',
