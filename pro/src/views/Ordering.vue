@@ -12,7 +12,7 @@
       />
     </van-grid>
     <div class="list" >
-      <van-panel v-for="item in lists" :icon="item.hotelimg" :title="item.hotelname" status="待支付">
+      <van-panel v-for="(item, key) in lists" :key="key" :icon="item.hotelimg" :title="item.hotelname" status="待支付">
         <div class="order-box">
           <p><span>{{item.roomnum}}</span>间,<span>{{item.roomtype}}</span></p>
           <p>使用时间：{{item.time}}</p>

@@ -9,8 +9,9 @@
 		/>
 		<div class="comment"></div>
 		<van-card
-		  v-for="item in lists"
-	  :title="item.ordernum"
+		  v-for="(item, key) in lists"
+			:key="key"
+	  	:title="item.ordernum"
 		  :desc="item.myappraise"  
 		  thumb="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2813996958,1618626128&fm=26&gp=0.jpg"
 		/>

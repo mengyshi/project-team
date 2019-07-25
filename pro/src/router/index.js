@@ -76,11 +76,6 @@ Vue.use(Router);
 
 const router = new Router({
   routes: [
-    // {
-    //   path: '/',
-    //   redirect: '/find'
-    // },
-
     {
       path: '/details/:from/:id',
       component: details,
@@ -122,11 +117,10 @@ const router = new Router({
       ]
     },
     {
-      path: '/bookpay',
+      path: '/bookpay/:price/:day',
       component: bookpay
     },
     {
-
       path: "/",
       component: Recommend,
       name: "Recommend",
@@ -281,7 +275,7 @@ const router = new Router({
       path: "/update",
       component: UpdatePwd,
     }, {
-      path: "/paysuccess",
+      path: "/paysuccess/:roomnum/:day/:allprice",
       component: paysuccess
     }
 

@@ -3,7 +3,7 @@
     <!-- 头部信息 -->
     <div>
       <van-nav-bar
-        title="酒店名绑定信息"
+        :title="hotelname"
         left-arrow
         @click-left="onClickLeft"
         @click-right="onClickRight($event)"
@@ -31,6 +31,7 @@
 
 <script>
 import hotelbook from "../components/hotelbook";
+import axios from "axios";
 
 export default {
   name: "hoteldetails",
@@ -41,7 +42,8 @@ export default {
       iconcollect: "star-o",
       active: 0,
       // hotelid: this.$route.params.id
-      hotelid: 3
+      hotelid: this.$route.params.id,
+      hotelname: ""
     };
   },
   methods: {
@@ -67,22 +69,22 @@ export default {
         this.$router.push(`/hotelbook/${this.hotelid}`);
       } else if (key == 1) {
         this.$router.push("/usercomment");
-        // this.$router.push({
-        //   path: "/usercomment",
-        //   query: {
-        //     a: 123,
-        //     b: 456
-        //   }
-        // });
       } else if (key == 2) {
         this.$router.push("/cityhotellist");
       }
     }
   },
   mounted() {
-    // this.$refs.hotelbook.onclick = () => console.log(123);
-    // var hotelid = this.$route.params.id;
-    this.$router.push(`/hotelbook/${this.hotelid}`);
+    let that = this;
+    axios({
+      method: "get",
+      url: "http://10.8.157.4:8080//triphotel/query.do",
+      params: { id: that.hotelid }
+    }).then(function(data) {
+      console.log(data.data.info);
+      that.hotelname = data.data.info.hotelname;
+      that.$router.push(`/hotelbook/${that.hotelid}`);
+    });
   },
   components: {
     hotelbook

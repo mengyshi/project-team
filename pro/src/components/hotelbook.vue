@@ -4,9 +4,9 @@
     <!-- 上部酒店图片轮播图 -->
     <div>
       <van-swipe :autoplay="3000" indicator-color="#bbb" :height="240">
-        <van-swipe-item v-for="(img, key) in 6" :key="key">
+        <van-swipe-item>
           <div style="height: 300px; background: #21abfd">
-            <van-image width="100%" height="100%" src="https://img.yzcdn.cn/vant/apple-1.jpg" />
+            <van-image width="100%" height="100%" :src="msg.imgurl" />
           </div>
         </van-swipe-item>
       </van-swipe>
@@ -16,8 +16,8 @@
       <van-row type="flex" justify="center">
         <van-col span="22">
           <div class="hotelmsg">
-            <span class="hotelname">酒店名</span>
-            <p class="hoteltext">酒店服务酒店服务酒店服务酒店服务酒店服务酒店服务酒店服务酒店服务酒店服务酒店服务酒店服务酒店服务</p>
+            <span class="hotelname">{{msg.hotelname}}</span>
+            <p class="hoteltext">{{msg.address}}</p>
           </div>
         </van-col>
       </van-row>
@@ -75,7 +75,7 @@
                 <van-datetime-picker
                   v-model="inDate"
                   type="date"
-                  :main-date="miandate"
+                  :min-date="miandate"
                   :visible-item-count="datenum"
                   title="预订时间"
                   :show-toolbar="showdatebtn"
@@ -89,7 +89,7 @@
                 <van-datetime-picker
                   v-model="outDate"
                   type="date"
-                  :main-date="miandate"
+                  :min-date="miandate"
                   :visible-item-count="datenum"
                   title="退订时间"
                   :show-toolbar="showdatebtn"
@@ -131,8 +131,8 @@
                 <p>入住当天18:00之前免费取消订单</p>
               </div>
               <div class="bookbtn">
-                <van-button type="info" @click="gobook(key)">预订</van-button>
-                <div class="money">￥123在线付</div>
+                <van-button type="info" @click="gobook(msg.price,stayday)">预订</van-button>
+                <div class="money">￥{{msg.price}}在线付</div>
               </div>
             </div>
           </van-col>
@@ -162,12 +162,14 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "hotelbook",
   data() {
     return {
       hotelid: this.$route.params.id,
-      img: "",
+      msg: "",
       show: false,
       showdatebtn: true, //用于控制弹出框中时间选择器自带的按钮
       time: "预定时间",
@@ -186,15 +188,11 @@ export default {
     showPopup() {
       this.show = true;
     },
-    asd() {
-      console.log(123);
-    },
     // 计算住宿时间
     showdate() {
       let max = Date.parse(this.outDate);
       let min = Date.parse(this.inDate);
       this.stayday = parseInt((max - min) / 1000 / 60 / 60 / 24);
-      console.log(this.stayday);
       this.intime = gettime(this.inDate);
       this.outtime = gettime(this.outDate);
       this.show = false;
@@ -204,25 +202,37 @@ export default {
       this.show = false;
     },
     // 跳转至预定信息页面
-    gobook(id) {
-      console.log("跳转至预定页");
-      console.log(id);
+    gobook(price, day) {
+      if(this.stayday <= 0 ){
+        this.$toast("请选择入住天数不能小于等于0");
+      }else{
+        this.$router.push(`/bookpay/${price}/${day}`);
+      }
+      
     }
   },
   mounted() {
-    console.log(this.hotelid);
     this.intime = gettime();
     this.outtime = gettime();
+    // 进入页面加载数据
+    let that = this;
+    axios({
+      method: "get",
+      url: "http://10.8.157.4:8080//triphotel/query.do",
+      params: { id: that.hotelid }
+    }).then(function(data) {
+      that.msg = data.data.info;
+    });
   }
 };
 
+// 根据时间返回字符串
 function gettime(date1) {
   if (date1 === undefined) {
     var date = new Date();
   } else {
     var date = date1;
   }
-
   var seperator1 = "-";
   var year = date.getFullYear();
   var month = date.getMonth() + 1;
