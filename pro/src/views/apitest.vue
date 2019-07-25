@@ -28,11 +28,15 @@ export default {
   },
   methods: {
     showcomment() {
+      // 房东故事列表页  根据page查询对应页面的信息
       axios({
         method: "get",
-        url: "http://10.8.157.4:8080//hoststory/list.do"
+        url: "http://10.8.157.4:8080//travel/query.do?id=1"
       }).then(function(data) {
         console.log(data.data);
+        // data.data.info.forEach(element => {
+        //   console.log(element);
+        // });
       });
     },
     showtravel() {

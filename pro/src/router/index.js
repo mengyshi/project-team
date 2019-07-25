@@ -25,10 +25,10 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    // {
-    //   path: '/',
-    //   redirect: '/find'
-    // },
+    {
+      path: '/',
+      redirect: '/find'
+    },
     {
       path: '/find',
       component: find,
@@ -74,11 +74,11 @@ export default new Router({
       ]
     },
     {
-      path: '/bookpay',
+      path: '/bookpay/:price/:day',
       component: bookpay
     },
     {
-      path: "/paysuccess",
+      path: "/paysuccess/:roomnum/:day/:allprice",
       component: paysuccess
     }
   ]

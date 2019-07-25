@@ -11,17 +11,18 @@
               </van-grid-item>
             </van-grid>
             <van-col span="24" class="article-title">
-              <span @click="godetails(b.id)">{{b.title}}</span>
+              <span @click="godetails(b.id)">{{b.homename}}</span>
             </van-col>
             <van-col span="8" class="article-time">
-              <span>{{b.datetime}}</span>
+              <span>{{b.date.substring(0,10)}}</span>
             </van-col>
             <van-col offset="8" span="4" class="like">
-              <van-icon name="like" color="rgba(255,255,255,.8)" @click="clicklike($event)" />12346
+              <van-icon name="like" color="#bbb" @click="clicklike($event)" />
+              {{b.likes}}
             </van-col>
             <van-col span="4" class="evaluate">
               <van-icon name="chat-o" />
-              {{b.pinglun}}
+              {{b.comment}}
             </van-col>
           </van-col>
         </van-row>
@@ -32,54 +33,45 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "house",
   data() {
     return {
       count: 0,
       isLoading: false,
-      msg: [
-        {
-          title: "这是标题1",
-          datetime: "2019.07.01",
-          pinglun: 456
-        },
-        {
-          title: "这是标题2",
-          datetime: "2019.07.02",
-          pinglun: 456
-        },
-        {
-          title: "这是标题3",
-          datetime: "2019.07.03",
-          pinglun: 456
-        },
-        {
-          title: "这是标题4",
-          datetime: "2019.07.05",
-          pinglun: 456
-        },
-        {
-          title: "这是标题6",
-          datetime: "2019.07.06",
-          pinglun: 456
-        },
-        {
-          title: "这是标题7",
-          datetime: "2019.07.07",
-          pinglun: 456
-        }
-      ]
+      like: true,
+      msg: [],
+      maxpage: 0,
+      pagenum: 1
     };
   },
   methods: {
     // 下拉加载新数据
     onRefresh() {
-      setTimeout(() => {
-        this.$toast("刷新成功");
-        this.isLoading = false;
-        this.count++;
-      }, 500);
+      let that = this;
+      this.pagenum++;
+      if (this.pagenum > this.maxpage) {
+        setTimeout(() => {
+          this.$toast("已经到达最后一页");
+          this.isLoading = false;
+          this.count++;
+        }, 500);
+      } else {
+        axios({
+          method: "get",
+          url: "http://10.8.157.4:8080//hoststory/list.do",
+          params: { page: that.pagenum }
+        }).then(function(data) {
+          // console.log(data.data.info);
+          data.data.info.infos.forEach((value, key) => {
+            that.msg.push(value);
+          });
+          that.$toast("数据加载成功");
+          that.isLoading = false;
+        });
+      }
     },
     // 调至详情
     godetails(id) {
@@ -90,13 +82,27 @@ export default {
       if (this.like) {
         e.target.style.color = "red";
         e.target.style.border = "red";
+        e.target.nextSibling.data = parseInt(e.target.nextSibling.data) + 1;
         this.like = false;
       } else {
         e.target.style.color = "rgba(187,187,187,.8)";
         e.target.style.border = "rgba(187,187,187,.8)";
+        e.target.nextSibling.data = parseInt(e.target.nextSibling.data) - 1;
         this.like = true;
       }
     }
+  },
+  mounted() {
+    let that = this;
+    // 页面打开就获取列表信息
+    axios({
+      method: "get",
+      url: "http://10.8.157.4:8080//hoststory/list.do?page=1"
+    }).then(function(data) {
+      // console.log(data.data.info);
+      that.maxpage = data.data.info.totalPage;
+      that.msg = data.data.info.infos;
+    });
   }
 };
 </script>

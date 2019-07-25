@@ -5,8 +5,11 @@ import App from './App'
 import router from './router'
 import Vant from 'vant'
 import 'vant/lib/index.css'
+import Share from 'vue-social-share'
+import 'vue-social-share/dist/client.css'
 
 Vue.use(Vant);
+Vue.use(Share);
 
 Vue.config.productionTip = false
 
