@@ -4,17 +4,17 @@
     <div class="find-main">
       <!-- 引入上方标签页 通过此处跳转至 发现对应子页 -->
       <van-tabs v-model="active" @click="onClick">
-        <van-tab title="旅游攻略">
-          <tourism class="asd" />
+        <van-tab title="热门评论">
+          <router-view class="asd"></router-view>
         </van-tab>
         <van-tab title="出行专题">
-          <travel class="asd" />
+          <router-view class="asd"></router-view>
         </van-tab>
         <van-tab title="房东故事">
-          <house class="asd" />
+          <router-view class="asd"></router-view>
         </van-tab>
         <van-tab title="热门评论">
-          <comment class="asd" />
+          <router-view class="asd"></router-view>
         </van-tab>
       </van-tabs>
     </div>
@@ -35,25 +35,32 @@ export default {
     };
   },
   methods: {
-    onClick(name, title) {}
-  },
-  components: {
-    tourism,
-    travel,
-    house,
-    comment
+    onClick(name, title) {
+      switch (name) {
+        case 0:
+          this.$router.push("/tourism");
+          break;
+        case 1:
+          this.$router.push("/travel");
+          break;
+        case 2:
+          this.$router.push("/house");
+          break;
+        case 3:
+          this.$router.push("/comment");
+          break;
+      }
+    }
   }
 };
 </script>
 
 <style scoped="">
-.find-main {
-  margin-bottom: 46px;
-  width: 100%;
-}
-
 .asd {
-  width: 100%;
+  width: 100% !important;
+  margin-top: 0 !important;
+  height: 100% !important;
+  background: #fff !important;
 }
 </style>
 
