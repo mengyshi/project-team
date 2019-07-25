@@ -5,16 +5,16 @@
       <!-- 引入上方标签页 通过此处跳转至 发现对应子页 -->
       <van-tabs v-model="active" @click="onClick">
         <van-tab title="旅游攻略">
-          <tourism />
+          <tourism class="asd" />
         </van-tab>
         <van-tab title="出行专题">
-          <travel />
+          <travel class="asd" />
         </van-tab>
         <van-tab title="房东故事">
-          <house />
+          <house class="asd" />
         </van-tab>
         <van-tab title="热门评论">
-          <comment />
+          <comment class="asd" />
         </van-tab>
       </van-tabs>
     </div>
@@ -49,6 +49,11 @@ export default {
 <style scoped="">
 .find-main {
   margin-bottom: 46px;
+  width: 100%;
+}
+
+.asd {
+  width: 100%;
 }
 </style>
 

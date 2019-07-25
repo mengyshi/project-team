@@ -20,8 +20,7 @@
           <span>认识一下Scarlett</span>
           <van-image width="52" height="52" src="https://img.yzcdn.cn/vant/cat.jpeg" :round="true" />
         </li>
-        <li class="jieshao">我生长于深圳的一个法律世家，而是因受儒、释、道三种思的交叉感染，养成了7大爱好；琴/色/书/画/诗/酒/茶。
-        </li>
+        <li class="jieshao">我生长于深圳的一个法律世家，而是因受儒、释、道三种思的交叉感染，养成了7大爱好；琴/色/书/画/诗/酒/茶。</li>
         <li>
           <span>活动内容</span>
           <p>我会带你品尝我精心挑选的几款茶，教你用传统仪式感，以及独具深圳式创造力的方式喝茶、烹饪、品茶。</p>
@@ -78,7 +77,7 @@ export default {
   }
 };
 </script>
-<style lang="" scope="">
+<style lang="" scoped="">
 .Experiencedetails {
   margin-top: 30px;
 }

@@ -12,7 +12,9 @@
             <router-link
               :to="{path:'Experiencedetails',name:'Experiencedetails',query:{id:item.id}}"
             >
-              <van-image src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2525537183,3948077918&fm=26&gp=0.jpg" />
+              <van-image
+                src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2525537183,3948077918&fm=26&gp=0.jpg"
+              />
             </router-link>
             <p>{{item.shopname}}</p>
             <p>{{item.detail}}</p>
@@ -46,12 +48,12 @@ export default {
         method: "get",
         url: "http://10.8.157.8:8080/food/collectDelicious.do",
         params: {
-         uid:2,
-         deliciousid:1
+          uid: 2,
+          deliciousid: 1
         }
       })
         .then(function(res) {
-          alert(res.data.info)
+          alert(res.data.info);
         })
         .catch(function(err) {
           console.log(err);
@@ -76,7 +78,7 @@ export default {
   }
 };
 </script>
-<style lang="" scope="">
+<style lang="" scoped="">
 * {
   padding: 0px;
   margin: 0px;

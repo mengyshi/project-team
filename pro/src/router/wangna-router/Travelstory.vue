@@ -1,13 +1,12 @@
 <template>
-    <div class="">
-        <h3>旅行故事详情</h3>
-    </div>
+  <div class>
+    <h3>旅行故事详情</h3>
+  </div>
 </template>
 <script>
 export default {
-    name:"Travelstory"
-}
+  name: "Travelstory"
+};
 </script>
-<style lang="" scope="">
-    
+<style lang="" scoped="">
 </style>

@@ -137,7 +137,7 @@ export default {
   mounted() {}
 };
 </script>
-<style scope="">
+<style scoped="">
 * {
   padding: 0px;
   margin: 0px;
