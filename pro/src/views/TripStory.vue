@@ -16,10 +16,10 @@
           <van-rate
             v-model="value"
             class="shoucang"
-            void-color="#eee"
             icon="like"
             void-icon="like-o"
             :count="1"
+            @change="shouC"
           />
           <van-goods-action-icon class="pinglun" icon="chat-o" @click="onClickIcon" />
         </div>
@@ -43,28 +43,42 @@ export default {
       // this.$toast("返回");
       this.$router.go(-1);
     },
+    //   评论操作
     onClickIcon() {
-      this.$toast("点击图标");
+      // this.$toast("点击图标");
+      // axios({
+      //   url: ""
+      // }).then(res => {
+      //   console.log(res);
+      // });
     },
+    // 详情   query传参操作
     detail(i) {
       // console.log(i);
       axios({
-
         url: "http://10.8.157.43:8080//travelLog/findById.do",
         // url: "http://dvbpr7.natappfree.cc/travelLog/findById.do",
-
         params: { id: i }
       }).then(data => {
         console.log(data);
         // console.log(id);
         this.$router.push({ path: "/detail", query: { id: i } });
       });
+    },
+    // 收藏操作
+    shouC() {
+      axios({
+        url: "http://10.8.157.43:8080/collecttion/add.do/uid=1&tid=2"
+        // params:{uid:,tid:}
+      }).then(res => {
+        console.log(res);
+      });
     }
   },
   mounted() {
     axios({
       url: "http://10.8.157.43:8080//travelLog/list.do"
-
+      // url: "http://dvbpr7.natappfree.cc/travelLog/list.do"
     })
       .then(data => {
         let arr = data.data.info;
@@ -77,7 +91,7 @@ export default {
   }
 };
 </script >
-<style>
+<style scoped="">
 ul {
   width: 100%;
   height: 100%;

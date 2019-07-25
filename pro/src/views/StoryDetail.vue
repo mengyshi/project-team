@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     onClickLeft() {
-
+      // this.$toast("返回");
       this.$router.go(-1);
     },
     onClickIcon() {
@@ -33,9 +33,9 @@ export default {
     }
   },
   mounted() {
-
+    // console.log(this.$route.query.id);
     axios({
-
+      // url: "http://dvbpr7.natappfree.cc/travelLog/findById.do",
       url: "http://10.8.157.43:8080//travelLog/findById.do",
       params: { id: this.$route.query.id }
     })
@@ -43,9 +43,6 @@ export default {
         console.log(data.data.info);
         this.list = data.data.info;
         var list = this.list;
-
-        console.log(list);
-
       })
       .catch(err => {
         console.log(err);

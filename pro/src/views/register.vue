@@ -23,20 +23,19 @@
           required
         />
       </van-cell-group>
-      <van-radio-group v-model="radio" id="sex">
+      <!-- <van-radio-group v-model="radio" id="sex">
         性别：
         <van-radio name="男" icon-size="14px">男</van-radio>
         <van-radio name="女" icon-size="14px">女</van-radio>
-      </van-radio-group>
-      <van-cell-group>
-        <!-- error-message="手机号格式错误" -->
+      </van-radio-group>-->
+      <!-- <van-cell-group>
         <van-field v-model="phone" label="手机号" placeholder="请输入手机号" />
         <van-field v-model="birthday" label="出生日期" placeholder="请输入出生年月" />
         <van-field v-model="birthday" label="身份证" placeholder="请输入身份证号" />
         <van-field v-model="birthday" label="省份" placeholder="请输入所在省份" />
         <van-field v-model="birthday" label="市区" placeholder="请输入所在市区" />
         <van-field v-model="birthday" label="邮箱" placeholder="请输入邮箱" />
-      </van-cell-group>
+      </van-cell-group>-->
     </div>
     <van-button
       v-bind:disable="dis"
@@ -105,6 +104,7 @@ export default {
           console.log(data);
           if (data.data == "success") {
             this.$router.push("/loginC");
+            localStorage.removeItem("userLoginInfo");
           }
         })
         .catch(err => {
@@ -127,12 +127,12 @@ export default {
   width: 17rem;
   margin-left: 1.5rem;
 }
-#sex {
+/* #sex {
   display: flex;
   margin-left: 1rem;
-}
+} */
 #RegisterBtn {
-  margin-left: 8rem;
+  /* margin-left: 5rem; */
   margin-top: 1.5rem;
 }
 </style>

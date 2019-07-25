@@ -93,7 +93,7 @@
         <div class="con-travel-story">
           <p class="con-travel-title">精彩旅行故事</p>
           <van-grid :border="false" :column-num="2">
-            <van-grid-item to>
+            <van-grid-item to="/trip">
               <van-image
                 src="http://img0.imgtn.bdimg.com/it/u=3581979092,1503649394&fm=26&gp=0.jpg"
               />
@@ -106,7 +106,7 @@
                 <van-icon name="chat-o" size="14" />
               </p>
             </van-grid-item>
-            <van-grid-item to>
+            <van-grid-item to="/trip">
               <van-image
                 src="http://img2.imgtn.bdimg.com/it/u=2684910209,2942734213&fm=26&gp=0.jpg"
               />

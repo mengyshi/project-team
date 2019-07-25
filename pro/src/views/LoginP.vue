@@ -15,8 +15,8 @@
       <div id="middle">
         <!-- center clearable label="短信验证码" -->
         <van-cell-group>
-          <van-field v-model="sms" placeholder="请输入手机号">
-            <van-button slot="button" size="small" type="primary">获取验证码</van-button>
+          <van-field v-model="tel" placeholder="请输入手机号">
+            <van-button slot="button" size="small" type="primary" @click="getYzm1">获取验证码</van-button>
           </van-field>
         </van-cell-group>
         <!-- 密码 -->
@@ -27,11 +27,12 @@
           @input="onInput"
           @delete="onDelete"
           @blur="showKeyboard = false"
+          v-model="yzm"
         />
       </div>
 
       <div id="bottom">
-        <van-button type="primary" id="loginBtn" size="small" v-tap="{methods:loginc}">登录</van-button>
+        <van-button type="primary" id="loginBtn" size="small" @click="login">登录</van-button>
       </div>
     </div>
     <!-- middle   end-->
@@ -47,6 +48,7 @@
   <!-- bottom  end-->
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "Login",
   data() {
@@ -54,9 +56,15 @@ export default {
       checked: "",
       username: "",
       password: "",
-      sms: "",
+      tel: "",
+      yzm: "",
+      yzm1: "",
+      yzm2: "",
+      code: "",
       value: "",
       mask: "",
+      info: "",
+      judgeTel: "",
       showKeyboard: true,
       config: {
         url: "http://www.baidu.com",
@@ -73,14 +81,101 @@ export default {
     };
   },
   methods: {
-    loginc() {
-      console.log(11);
+    // 分别 v-model  的data为    tel   yzm
+    getYzm1() {
+      // 这个axios请求是判断手机号是首次登录还是再次登录  返回  code 0   code 1
       axios({
-        url: "http://www.manman.com/api"
-      }).then(data => {
-        console.log(data);
+        url: "http://10.8.157.41:8080/user/checkUserTel",
+        params: { tel: this.tel }
+      }).then(res => {
+        console.log(res);
+        // console.log(res.data.info);
+        this.code = res.data.code;
+        console.log(this.code);
+        if (this.code == 0) {
+          // code为0表示首次登录    请求接口
+          axios({
+            url: "http://10.8.157.41:8080/user/sendTelCode",
+            data: { tel: this.tel },
+            method: "post",
+            transformRequest: [
+              function(data) {
+                let ret = "";
+                for (let it in data) {
+                  ret +=
+                    encodeURIComponent(it) +
+                    "=" +
+                    encodeURIComponent(data[it]) +
+                    "&";
+                }
+                return ret;
+              }
+            ],
+
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          })
+            .then(res => {
+              console.log(res);
+              this.yzm1 = res.data.info;
+              console.log(this.yzm1);
+              // 在这里拿到发送的验证码   res.data.yzm1
+              // 在点击登录按钮时进行判断   如果验证码匹配成功   则跳转路径
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        } else {
+          axios({
+            url: "http://10.8.157.41:8080/user/sendCode",
+            data: { tel: this.tel },
+            method: "post",
+            transformRequest: [
+              function(data) {
+                let ret = "";
+                for (let it in data) {
+                  ret +=
+                    encodeURIComponent(it) +
+                    "=" +
+                    encodeURIComponent(data[it]) +
+                    "&";
+                }
+                return ret;
+              }
+            ],
+
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          })
+            .then(res => {
+              console.log(res);
+              this.yzm1 = res.data.info;
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        }
       });
     },
+    // 登录操作
+    login() {
+      console.log(11);
+      axios({
+        url: "http://10.8.157.41:8080/user//validateTelCode",
+        params: { tel: this.tel, code: this.yzm1 }
+      }).then(data => {
+        console.log(this.tel);
+        console.log(this.yzm1);
+        console.log(data.data.code);
+        console.log(data);
+        if (data.data.code == 1) {
+          this.$router.push("/index");
+        }
+      });
+    },
+
     onInput(key) {
       this.value = (this.value + key).slice(0, 6);
     },
@@ -103,7 +198,7 @@ export default {
 #login_middle {
   width: 17rem;
   height: 16rem;
-  margin-left: 1.5rem;
+  margin-left: 3rem;
 }
 #top {
   display: flex;
@@ -135,9 +230,9 @@ export default {
 #login_bottom h6 {
   margin: 1rem 5.8rem;
 }
-#shares {
+/* #shares {
   margin-left: 5.5rem;
-}
+} */
 #login_bottom p {
   margin: 1rem 3.5rem;
 }

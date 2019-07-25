@@ -18,19 +18,12 @@
           @blur="phoneTest"
         />
         <van-button type="primary" size="small" id="getVal" @click="getYzm">获取验证码</van-button>
-        <van-field
-          v-model="yanzhengma"
-          @blur="yzmTest"
-          required
-          clearable
-          label="验证码"
-          placeholder="验证码"
-        />
+        <van-field v-model="yzm" @blur="yzmTest" required clearable label="验证码" placeholder="验证码" />
         <van-field v-model="password1" type="password" label="密码" placeholder="输入新密码" required />
         <van-field
           v-model="password2"
           type="password"
-          label="密码"
+          label="再次输入"
           placeholder="再次输入新密码"
           required
           @blur="pwd2"
@@ -47,12 +40,14 @@ export default {
   data() {
     return {
       tel: "",
-      yanzhengma: "",
+      yzm: "",
       password1: "",
       password2: "",
       info: "",
       code: "",
-      code1: ""
+      code1: "",
+      info1: "",
+      code2: ""
     };
   },
   methods: {
@@ -86,25 +81,58 @@ export default {
     },
     // 点击  获取验证码按钮  发起axios请求
     getYzm() {
-      axios
-        .post("http://10.8.157.41:8080/user/sendTelCode/", { tel: this.tel })
+      // axios
+      //   .post("http://10.8.157.41:8080/user/sendCode", { tel: this.tel },
+      //   )
+      axios({
+        url: "http://10.8.157.41:8080/user/sendCode",
+        method: "post",
+        data: { tel: this.tel },
+        transformRequest: [
+          function(data) {
+            let ret = "";
+            for (let it in data) {
+              ret +=
+                encodeURIComponent(it) +
+                "=" +
+                encodeURIComponent(data[it]) +
+                "&";
+            }
+            return ret;
+          }
+        ],
+
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      })
         .then(data => {
+          console.log(data);
           console.log(this.tel);
           console.log(data.data.code);
           console.log(data.data.info);
-          // console.log(data);
-          this.info = data.data.info;
-          this.code = data.data.code;
-          // 再次发起axios请求
-          axios({});
+          // 把请求得到的数据放到全局上   这样在其它函数中也可以访问操作
+          this.info1 = data.data.info;
+          this.code1 = data.data.code;
+          if (this.yzm == data.data.info) {
+            console.log("验证码匹配成功");
+          }
+          再次发起axios请求;
+          axios
+            .post("http://10.8.157.41:8080/user/sendCode", {
+              tel: this.tel
+            })
+            .then(res => {
+              console.log(res);
+            });
         })
         .catch(err => {
           console.log(err);
         });
     },
     yzmTest() {
-      if (this.yanzhengma == this.info) {
-        console.log("验证码匹配成功");
+      if (this.yzm == this.info1) {
+        console.log("验证码输入成功");
       } else {
         this.$toast("验证码输入错误");
       }
@@ -119,7 +147,7 @@ export default {
         .then(res => {
           console.log(res);
           console.log(res.data.code);
-          this.code1 = res.data.code;
+          this.code = res.data.code;
           if (this.code1 == 1) {
             this.$toast("密码修改成功");
             this.$router.push("/loginC");
