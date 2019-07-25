@@ -90,7 +90,7 @@ export default {
   methods: {
     // 返回上一级按钮
     leftClick() {
-      this.$router.go(-1);
+      this.$router.push("/find");
     },
     // 跳转至搜索页
     goselectpage() {
@@ -98,6 +98,7 @@ export default {
       this.$router.push("/indexSearch");
     },
     // 价格排序下拉菜单
+
     price() {
       if (this.value1 === "b") {
         this.value2 = "1";

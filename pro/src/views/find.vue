@@ -35,23 +35,7 @@ export default {
     };
   },
   methods: {
-    onClick(name, title) {
-      // console.log(name, title);
-      // switch (name) {
-      //   case 0:
-      //     this.$router.push("/tourism");
-      //     break;
-      //   case 1:
-      //     this.$router.push("/travel");
-      //     break;
-      //   case 2:
-      //     this.$router.push("/house");
-      //     break;
-      //   case 3:
-      //     this.$router.push("/comment");
-      //     break;
-      // }
-    }
+    onClick(name, title) {}
   },
   components: {
     tourism,
@@ -65,7 +49,6 @@ export default {
 <style scoped="">
 .find-main {
   margin-bottom: 46px;
-  overflow: auto;
 }
 </style>
 

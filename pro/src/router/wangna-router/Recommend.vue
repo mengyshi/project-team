@@ -122,7 +122,7 @@
           </van-grid>
         </div>
         <!-- 旅游攻略 -->
-        <div class="con-travelling-guideline">
+        <div class="con-travelling-guideline" @click="gofind($event)">
           <p>旅游攻略</p>
           <div class="traveling-wrap">
             <van-image
@@ -171,6 +171,10 @@ export default {
     },
     searchBtn() {
       this.$router.push("indexSearch");
+    },
+    //  跳转至发现模块 旅游攻略
+    gofind(e) {
+      this.$router.push("/find");
     }
   },
   mounted() {

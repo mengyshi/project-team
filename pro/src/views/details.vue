@@ -72,8 +72,6 @@ export default {
       this.$router.go(-1);
     }
   },
-  // 通过获取页面后缀查询单条信息 并展示详情 通过from判断是有谁跳转过来的 调用同一个页面
-  // from=1 旅游攻略页     from=2 房东故事页
   mounted() {
     let from = this.$route.params.from;
     let id = this.$route.params.id;
@@ -85,11 +83,9 @@ export default {
         url: "http://10.8.157.4:8080//travel/query.do",
         params: { id: id }
       }).then(function(data) {
-        // console.log(data.data.info);
         that.msg = data.data.info;
       });
     } else {
-      this.$router.go(0);
       // 这里写房东故事详情
       axios({
         method: "get",
@@ -106,7 +102,6 @@ export default {
 <style scoped="">
 .main {
   margin-bottom: 46px;
-  overflow: auto;
 }
 
 .datetime,

@@ -81,7 +81,6 @@ export default {
       url: "http://10.8.157.4:8080//triphotel/query.do",
       params: { id: that.hotelid }
     }).then(function(data) {
-      console.log(data.data.info);
       that.hotelname = data.data.info.hotelname;
       that.$router.push(`/hotelbook/${that.hotelid}`);
     });
@@ -93,10 +92,6 @@ export default {
 </script>
 
 <style scoped="">
-.main {
-  overflow: auto;
-}
-
 .header-main {
   background: #eae9e9;
 }

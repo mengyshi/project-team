@@ -85,10 +85,8 @@ export default {
       methos: "get",
       url: "http://10.8.157.4:8080//trip/list.do?page=1"
     }).then(function(data) {
-      console.log(data.data.info);
       that.maxpage = data.data.info.totalPage;
       that.msg = data.data.info.infos;
-      console.log(that.msg);
     });
   }
 };
