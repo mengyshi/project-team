@@ -19,15 +19,36 @@
     </div>
 
     <!-- 分享链接块 -->
-    <div></div>
+    <div>
+      <van-row type="flex" justify="center">
+        <van-col span="22">
+          <div class="share-box">
+            <share :config="config" class="shareicon"></share>
+          </div>
+        </van-col>
+      </van-row>
+    </div>
   </div>
 </template>
 
+ 
 <script>
 export default {
-  name: "share",
+  name: "sharepage",
   data() {
-    return {};
+    return {
+      config: {
+        url: "http:www.baidu.com",
+        source: "",
+        title: "文本标题分享",
+        description: "文本内容分享",
+        img: "",
+        sites: ["qzone", "qq", "weibo", "wechat"],
+        wechatQrcodeTitle: "微信扫一扫：分享",
+        wechatQrcodeHelper:
+          "<p>微信里点“发现”，扫一下</p><p>二维码便可将本文发送至朋友圈</p>"
+      }
+    };
   },
   methods: {
     onClickLeft() {
@@ -43,8 +64,16 @@ export default {
   margin-bottom: 46px;
 }
 
-.shareblock {
-  margin-top: 20px;
+.share-box {
+  border-radius: 10px;
+  padding: 50px;
+  text-align: center;
+  /* background: #bbb; */
+}
+
+.shareicon {
+  width: 100%;
+  background: #fff;
 }
 </style>
 

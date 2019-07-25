@@ -18,15 +18,15 @@
       <!-- 用于加载搜索出来的数据 -->
       <div class="content">
         <van-pull-refresh v-model="isLoading" @refresh="onRefresh" class="a123">
-          <div v-for="(b, index) in msg" :key="index">
+          <div v-for="(msga, index) in msg" :key="index">
             <van-row type="flex" justify="center">
               <van-col span="22">
                 <van-grid :border="false" :column-num="1">
                   <!-- 详情图片 -->
                   <van-grid-item class="parent">
                     <van-image
-                      src="https://userimg.qunarzz.com/imgs/201812/14/C._M0DCiigIKy7OcGzi480s.jpg"
-                      @click="gohoteldetails(b.id)"
+                      :src="msga.imgurl? msga.imgurl:msga.imgUrl"
+                      @click="gohoteldetails(msga.id)"
                       fit="fill"
                       width="100%"
                     />
@@ -36,18 +36,18 @@
                       color="rgba(255,255,255,.8)"
                       @click="iconclick($event)"
                     />
-                    <span class="children1">￥123456</span>
+                    <span class="children1">￥{{msga.price}}</span>
                   </van-grid-item>
                   <van-row type="flex" justify="space-between" style="width: 100%;">
                     <van-col span="18">
-                      <div class="title" @click="gohoteldetails(b.id)">大理古城大德生福二楼舒适套房</div>
+                      <div class="title" @click="gohoteldetails(msga.id)">{{msga.hotelname}}</div>
                       <div class="describe">
-                        <span>整租|客栈| 宜住5人</span>
-                        <span>大理大理市</span>
+                        <span>{{msga.detail}}</span>
+                        <span>{{msga.city}}</span>
                       </div>
                     </van-col>
                     <van-col span="4">
-                      <div class="result">5.0</div>
+                      <div class="result">{{msga.grade}}</div>
                     </van-col>
                   </van-row>
                 </van-grid>
@@ -69,29 +69,9 @@ export default {
     return {
       count1: 1,
       iconlike: "like",
-      msg: [
-        {
-          title: "郑州",
-          datetime: "1997 - 01 - 01",
-          pinglun: 20,
-          img: ""
-        },
-        {
-          title: "郑州",
-          datetime: "1997 - 01 - 01",
-          pinglun: 20
-        },
-        {
-          title: "郑州",
-          datetime: "1997 - 01 - 01",
-          pinglun: 20
-        },
-        {
-          title: "郑州",
-          datetime: "1997 - 01 - 01",
-          pinglun: 20
-        }
-      ],
+      maxpage: 0,
+      pagenum: 1,
+      msg: [],
       value1: "a",
       value2: "1",
       option1: [
@@ -108,40 +88,68 @@ export default {
     };
   },
   methods: {
+    // 返回上一级按钮
     leftClick() {
-      this.$router.go(-1);
+      this.$router.push("/find");
     },
+    // 跳转至搜索页
     goselectpage() {
-      this.$router.push("/select");
+      // this.$router.push("/select");
+      this.$router.push("/indexSearch");
     },
+    // 价格排序下拉菜单
+
     price() {
       if (this.value1 === "b") {
-        console.log("升序");
         this.value2 = "1";
+        this.msg.sort((a, b) => {
+          return a.price - b.price;
+        });
       } else if (this.value1 === "c") {
-        console.log("降序");
         this.value2 = "1";
+        this.msg.reverse();
       }
     },
+    // 城市排序下拉菜单
     city() {
+      let that = this;
       if (this.value2 === "2") {
-        console.log("升序");
         this.value1 = "a";
+        axios({
+          method: "get",
+          url: "http://10.8.157.4:8080//triphotel/asc.do"
+        }).then(function(data) {
+          that.msg = data.data.info;
+        });
       } else if (this.value2 === "3") {
-        console.log("降序");
         this.value1 = "a";
+        this.msg.reverse();
       }
     },
+    // 页面下拉加载
     onRefresh() {
-      setTimeout(() => {
-        this.$toast("刷新成功");
+      let that = this;
+      this.pagenum++;
+      if (this.pagenum > this.maxpage) {
+        this.$toast("没有更多数据了");
         this.isLoading = false;
-        this.count++;
-      }, 500);
+      } else {
+        axios({
+          method: "get",
+          url: "http://10.8.157.4:8080//triphotel/list.do",
+          params: { page: that.pagenum }
+        }).then(function(data) {
+          data.data.info.infos.forEach((value, key) => {
+            that.msg.push(value);
+          });
+          that.$toast("加载完成");
+          that.isLoading = false;
+        });
+      }
     },
     // 跳转至酒店详情页
     gohoteldetails(id) {
-      console.log(123);
+      console.log(id);
       this.$router.push(`/hoteldetails/${id}`);
     },
     // 喜欢图标
@@ -156,7 +164,15 @@ export default {
     }
   },
   mounted() {
+    // 进入页面加载首屏数据
     let that = this;
+    axios({
+      method: "get",
+      url: "http://10.8.157.4:8080//triphotel/list.do?page=1"
+    }).then(function(data) {
+      that.maxpage = data.data.info.totalPage;
+      that.msg = data.data.info.infos;
+    });
   }
 };
 </script>

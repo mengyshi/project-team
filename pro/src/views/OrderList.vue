@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="list">
-			 <van-panel v-for="item in lists" :icon="item.hotelimg" :title="item.hotelname" status="支付成功">
+			 <van-panel v-for="(item, key) in lists" :key="key" :icon="item.hotelimg" :title="item.hotelname" status="支付成功">
 		        <div class="order-box">
 		          <p><span>{{item.roomnum}}</span>间,<span>{{item.roomtype}}</span></p>
 		          <p>使用时间：{{item.time}}</p>
@@ -14,7 +14,7 @@
 			
 		</div>
 		<div class="list">
-			<van-panel   v-for="item in list" :icon="item.hotelimg" :title="item.hotelname"  status="订单超时">
+			<van-panel   v-for="(item, key) in list" :key="key" :icon="item.hotelimg" :title="item.hotelname"  status="订单超时">
 			  <div class="order-box">
 			  	 <p><span>{{item.roomnum}}</span>间,<span>{{item.roomtype}}</span></p>
 		          <p>使用时间：{{item.time}}</p>

@@ -1,4 +1,5 @@
 <template>
+
 	<div>
 		<van-nav-bar
 		:fixed="true"
@@ -56,17 +57,21 @@ import {Toast} from "vant"
 			}
 		},
 	}
+
+
+
+
 </script>
 <style>
-	*{
-		margin:0;padding:0;
-	}
-	#content{
-		margin-top:2.6rem;
-	}
-	#content .cont {
-		margin:2rem 0;
-		background:#cecece;
-
-	}
+* {
+  margin: 0;
+  padding: 0;
+}
+#content {
+  margin-top: 2.6rem;
+}
+#content .cont {
+  margin: 2rem 0;
+  background: #cecece;
+}
 </style>

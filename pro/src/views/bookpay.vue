@@ -26,7 +26,6 @@
           </van-swipe-item>
         </van-swipe>
       </div>
-
       <!-- 房间信息 -->
       <div>
         <van-row type="flex" justify="center">
@@ -69,6 +68,18 @@
         <van-row type="flex" justify="center">
           <van-col span="6">
             <div class="bookmsga">
+              <p>单价</p>
+            </div>
+          </van-col>
+          <van-col span="16">
+            <div class="bookmsga">
+              <p>{{price}}元</p>
+            </div>
+          </van-col>
+        </van-row>
+        <van-row type="flex" justify="center">
+          <van-col span="6">
+            <div class="bookmsga">
               <p>入住人</p>
             </div>
           </van-col>
@@ -102,13 +113,29 @@
             </div>
           </van-col>
         </van-row>
+        <van-row type="flex" justify="center">
+          <van-col span="6">
+            <div class="bookmsga">
+              <p>住宿天数</p>
+            </div>
+          </van-col>
+          <van-col span="16">
+            <div class="bookmsga">
+              <p>{{day}}天</p>
+            </div>
+          </van-col>
+        </van-row>
       </div>
     </div>
 
     <!-- 底层支付 -->
     <div class="pay">
-      <van-submit-bar :price="3050" button-text="提交订单" @submit="onSubmit">
-        <!-- <van-checkbox v-model="checked">全选</van-checkbox> -->
+      <van-submit-bar
+        :price="allprice == 0 ? price*100 : allprice*100"
+        button-text="确认支付"
+        @submit="onSubmit(roomnum, price, day, allprice)"
+        :decimal-length="pricezero"
+      >
         <van-dropdown-menu direction="up" class="dropdown">
           <van-dropdown-item v-model="value1" :options="option1" />
         </van-dropdown-menu>
@@ -131,7 +158,11 @@ export default {
         { text: "微信支付", value: 2 },
         { text: "Apple pay支付", value: 3 }
       ],
-      roomnum: 1
+      pricezero: 0, // 价个后面的0的个数
+      roomnum: 1,
+      price: 0,
+      day: 0,
+      allprice: 0
     };
   },
   methods: {
@@ -150,8 +181,18 @@ export default {
       }
     },
     // 提交订单
-    onSubmit() {
-      console.log("点击了提交按钮");
+    onSubmit(roomnum, price, day, allprice) {
+      this.$router.push(`/paysuccess/${roomnum}/${day}/${allprice}`);
+    }
+  },
+  mounted() {
+    this.price = parseFloat(this.$route.params.price);
+    this.day = parseInt(this.$route.params.day);
+    this.allprice = this.price * this.day;
+  },
+  watch: {
+    roomnum: function(newval, oldval) {
+      this.allprice = this.roomnum * this.day * this.price;
     }
   }
 };
@@ -186,7 +227,7 @@ export default {
 }
 
 .dropdown {
-  width: 150px;
+  width: 120px;
 }
 
 .bookmsga p {

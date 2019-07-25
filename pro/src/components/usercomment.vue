@@ -29,8 +29,20 @@
 <script>
 export default {
   name: "usercomment",
+  data() {
+    return {
+      msg: []
+    };
+  },
   mounted() {
-    // console.log(this.$route.query);
+    let that = this;
+    axios({
+      methos: "get",
+      url: "http://10.8.157.4:8080//comment/list.do?page=1"
+    }).then(function(data) {
+      that.maxpage = data.data.info.totalPage;
+      that.msg = data.data.info.infos;
+    });
   }
 };
 </script>

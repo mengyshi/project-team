@@ -61,12 +61,10 @@ export default {
       minDate: new Date(),
       birthday: "",
       dis: false
-    };
+    }
   },
   methods: {
-    onClickLeft(){
-      this.$router.go(-1);
-    },
+    
     // 用户名测试
     userTest() {
       if (!this.username) {
@@ -115,7 +113,7 @@ export default {
         });
     },
     onClickLeft() {
-      this.$router.go(1);
+      this.$router.go(-1);
     }
   },
   mounted() {}
