@@ -196,7 +196,7 @@ export default {
   }
 };
 </script>
-<style scoped="">
+<style scope="">
 * {
   margin: 0px;
   padding: 0px;

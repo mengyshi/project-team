@@ -8,5 +8,5 @@ export default {
   name: "Travelstory"
 };
 </script>
-<style lang="" scoped="">
+<style lang="" scope="">
 </style>

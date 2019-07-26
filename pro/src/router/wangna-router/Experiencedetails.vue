@@ -77,7 +77,7 @@ export default {
   }
 };
 </script>
-<style lang="" scoped="">
+<style lang="" scope="">
 .Experiencedetails {
   margin-top: 30px;
 }

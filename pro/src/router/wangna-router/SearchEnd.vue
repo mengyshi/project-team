@@ -159,7 +159,7 @@ export default {
   }
 };
 </script>
-<style lang="" scoped="">
+<style lang="" scope="">
 .select-list {
   margin-bottom: 40px;
 }

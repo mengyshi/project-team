@@ -80,7 +80,7 @@ export default {
   }
 };
 </script>
-<style lang="" scoped="">
+<style lang="" scope="">
 * {
   padding: 0px;
   margin: 0px;
