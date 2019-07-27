@@ -78,7 +78,7 @@
 	
 
 
-</script>
+</script scope="">
 <style>
 	.orderlist{
 		margin-top:3rem;

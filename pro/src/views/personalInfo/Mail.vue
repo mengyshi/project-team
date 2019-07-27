@@ -16,7 +16,7 @@
 		</van-panel>	
 	</div>
 </template>
-<script>
+<script >
 import axios from "axios"
 	import qs from "qs"
 	export default{
@@ -87,7 +87,7 @@ import axios from "axios"
 
 	}
 </script>
-<style>
+<style scope="">
 	.ipt{
 		margin:0 1.2rem;
 		background:#cecece;

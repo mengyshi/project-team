@@ -142,7 +142,7 @@
 	  }
 	};
 </script>
-<style>
+<style scope="">
 
 	.box{
 		margin-bottom: 1rem;

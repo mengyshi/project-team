@@ -177,7 +177,7 @@ import {Toast} from "vant"
 
 
 
-<style >
+<style scope="">
 	#app{
 		text-align:left;
 	}

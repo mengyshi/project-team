@@ -76,7 +76,7 @@
 	  }
 	}
 </script>
-<style>
+<style scope="">
 .add{
 	margin-top:3rem
 }

@@ -107,7 +107,7 @@ import { Dialog } from 'vant';
 		}
 	}
 </script>
-<style>
+<style scope="">
 	.show{
 		margin-top:3rem;
 		margin:1rem 0.5rem

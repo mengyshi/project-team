@@ -81,7 +81,7 @@
           <ul>
             <li v-for="item in list1" :key="item.id">
               <router-link
-                :to="{path:'Exploringexperience',name:'Exploringexperience',query:{id:item.id}}"
+                :to="{path:'Exploringexperience',name:'Exploringexperience',query:{id:4}}"
               >
                 <van-image :src="item.imgpath"></van-image>
               </router-link>

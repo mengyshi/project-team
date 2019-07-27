@@ -69,8 +69,8 @@
 	  }
 
 	}
-</script>
-<style>
+</script >
+<style scope="">
 	#app{
 		text-align:left;
 	}

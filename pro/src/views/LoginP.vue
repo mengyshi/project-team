@@ -185,7 +185,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scope="">
 #wrap {
   position: relative;
   height: 36rem;

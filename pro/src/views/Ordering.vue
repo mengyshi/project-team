@@ -98,7 +98,7 @@
 	}
 
 </script>
-<style>
+<style scope="">
 		#app{
 			text-align:left;
 			}

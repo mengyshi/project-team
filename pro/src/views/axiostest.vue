@@ -58,7 +58,7 @@ export default {
 };
 </script>
 
-<style>
+<style scope="">
 .asd {
   overflow: auto;
 }

@@ -79,7 +79,7 @@ import axios from "axios"
 		}
 	}
 </script>
-<style>
+<style scope="">
 	.comment{
 		margin-top:3rem
 	}

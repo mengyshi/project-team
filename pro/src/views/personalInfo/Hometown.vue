@@ -86,7 +86,7 @@
 
 	}
 </script>
-<style>
+<style scope="">
 
 	.ipt{
 		margin:0 1.2rem;
