@@ -80,7 +80,7 @@ export default {
       // 这里写旅游攻略详情
       axios({
         method: "get",
-        url: "http://10.8.157.4:8080//travel/query.do",
+        url: "http://101.132.39.73:8080/travelapp/travel/query.do",
         params: { id: id }
       }).then(function(data) {
         that.msg = data.data.info;
@@ -89,7 +89,7 @@ export default {
       // 这里写房东故事详情
       axios({
         method: "get",
-        url: "http://10.8.157.4:8080//hoststory/query.do",
+        url: "http://101.132.39.73:8080/travelapp/hoststory/query.do",
         params: { id: id }
       }).then(function(data) {
         that.msg = data.data.info;

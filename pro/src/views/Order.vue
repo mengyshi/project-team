@@ -51,7 +51,7 @@
 	  mounted(){
 	  	
 		axios({
-	      url:"http://10.8.157.18:8080/ord/orderdeta.do",
+	      url:"http://101.132.39.73:8080/travelapp/ord/orderdeta.do",
 	      method:"get",
 	      params:{}
 	    }).then((data)=>{

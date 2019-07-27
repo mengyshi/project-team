@@ -51,6 +51,7 @@
 </template>
 <script>
 import axios from "axios"
+import { Dialog } from 'vant';
 	export default{
 		data(){
 			return{
@@ -62,19 +63,31 @@ import axios from "axios"
 		methods:{
 			onClickLeft(){
 				this.$router.go(-1);
-			}
+			},
+			components:{
+			  	
+			  	[Dialog.Component.name]: Dialog.Component
+			  },
 		},
 		mounted(){
 			var _this=this;
 			axios({
-				url:"http://10.8.157.4:8080//trip/list.do"
+				url:"http://101.132.39.73:8080/travelapp/trip/list.do"
 
 			}).then((data)=>{
 				console.log(data);
 					_this.img=data.data.info[0].imgUrl;
 			})
 			if(localStorage.getItem("info")){
-	    	this.num=true
+	    	this.num=true;
+
+
+	    }else{
+	    	Dialog.alert({
+			  message: '您还未登录,请先登录'
+			}).then(() => {
+			  this.$router.push("/loginC")
+			});
 
 	    }
 			// 

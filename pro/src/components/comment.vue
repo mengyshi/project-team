@@ -83,7 +83,7 @@ export default {
     let that = this;
     axios({
       methos: "get",
-      url: "http://10.8.157.4:8080//comment/list.do?page=1"
+      url: "http://101.132.39.73:8080/travelapp/comment/list.do?page=1"
     }).then(function(data) {
       // console.log(data.data.info);
       that.maxpage = data.data.info.totalPage;

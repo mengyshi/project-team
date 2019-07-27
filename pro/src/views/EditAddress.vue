@@ -48,7 +48,7 @@
 	    	var id=this.$route.query.index;
 	    	 var area=""+content.province+content.city+content.county;
 	    	axios({
-		      url:"http://10.8.157.18:8080/set/updateadds.do",
+		      url:"http://101.132.39.73:8080/travelapp/set/updateadds.do",
 		      method:"post",
 		      params:{id:id,name:content.name,area:area,phone:content.tel,detailadds:content.addressDetail,areaCode:content.areaCode}
 		    }).then((data)=>{
@@ -61,7 +61,7 @@
 	    onDelete() {
 	    	var id=this.$route.query.index;
 	    	axios({
-		      url:"http://10.8.157.18:8080/set/dele.do",
+		      url:"http://101.132.39.73:8080/travelapp/set/dele.do",
 		      method:"get",
 		      params:{id:id}
 
@@ -78,7 +78,7 @@
 	  	var id=this.$route.query.index;
 
 		    axios({
-		      url:"http://10.8.157.18:8080/set/findbyid.do",
+		      url:"http://101.132.39.73:8080/travelapp/set/findbyid.do",
 		      method:"post",
 		      params:{id:id}
 

@@ -19,7 +19,8 @@
 	</div>
 </template>
 <script>
-  import axios from "axios"
+  import axios from "axios";
+  import { Dialog } from 'vant';
 	export default {
   data() {
     return {
@@ -41,6 +42,10 @@
       num:false,
     }
   },
+   components:{
+     
+      [Dialog.Component.name]: Dialog.Component
+    },
 
   methods: {
     onAdd() {
@@ -59,7 +64,7 @@
   mounted(){
     axios({
 
-      url:"http://10.8.157.18:8080/set/adds.do",
+      url:"http://101.132.39.73:8080/travelapp/set/adds.do",
 
       method:"get",
 
@@ -83,6 +88,13 @@
   })
     if(localStorage.getItem("info")){
         this.num=true
+
+      }else{
+        Dialog.alert({
+        message: '您还未登录,请先登录'
+      }).then(() => {
+        this.$router.push("/loginC")
+      });
 
       }
 }

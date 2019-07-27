@@ -60,7 +60,7 @@ export default {
     let that = this;
     axios({
       method: "get",
-      url: "http://10.8.157.8:8080/food/shopDetail.do",
+      url: "http://101.132.39.73:8080/travelapp/food/shopDetail.do",
       params: {
         id: that.$route.query.id
       }

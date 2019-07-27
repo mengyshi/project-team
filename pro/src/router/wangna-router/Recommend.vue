@@ -180,7 +180,7 @@ export default {
   mounted() {
     let _this = this;
     axios
-      .get("http://10.8.157.8:8080/hotel/findHotel.do")
+      .get("http://101.132.39.73:8080/travelapp/hotel/findHotel.do")
       .then(function(response) {
         for (let i = 0; i < response.data.info.length; i++) {
           if (i < 3) {

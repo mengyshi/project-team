@@ -204,7 +204,7 @@ const router = new Router({
       component: ToBePay,
     },
     {
-      path: "/comment",
+      path: "/comments",
       component: Comment,
     },
     {

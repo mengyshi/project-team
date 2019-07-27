@@ -46,7 +46,7 @@ export default {
     collectionpro() {
       axios({
         method: "get",
-        url: "http://10.8.157.8:8080/food/collectDelicious.do",
+        url: "http://101.132.39.73:8080/travelapp/food/collectDelicious.do",
         params: {
           uid: 2,
           deliciousid: 1
@@ -64,7 +64,7 @@ export default {
     let that = this;
     axios({
       method: "get",
-      url: "http://10.8.157.8:8080/food/showShopdetail.do",
+      url: "http://101.132.39.73:8080/travelapp/food/showShopdetail.do",
       params: {
         id: that.$route.query.id
       }

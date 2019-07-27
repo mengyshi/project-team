@@ -85,7 +85,7 @@ export default {
       //   .post("http://10.8.157.41:8080/user/sendCode", { tel: this.tel },
       //   )
       axios({
-        url: "http://10.8.157.41:8080/user/sendCode",
+        url: "http://101.132.39.73:8080/travelapp/user/sendCode",
         method: "post",
         data: { tel: this.tel },
         transformRequest: [
@@ -119,7 +119,7 @@ export default {
           }
           再次发起axios请求;
           axios
-            .post("http://10.8.157.41:8080/user/sendCode", {
+            .post("http://101.132.39.73:8080/travelapp/user/sendCode", {
               tel: this.tel
             })
             .then(res => {
@@ -141,7 +141,7 @@ export default {
     saveBtn() {
       // 点击保存按钮把修改后的数据传给后台数据库
       axios({
-        url: "http://10.8.157.41:8080/user/updatePassword",
+        url: "http://101.132.39.73:8080/travelapp/user/updatePassword",
         params: { tel: this.tel, code: this.code1, password: this.password1 }
       })
         .then(res => {

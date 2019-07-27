@@ -66,7 +66,7 @@ export default {
       } else {
         axios({
           method: "get",
-          url: "http://192.168.50.132:8080/trip/list.do",
+          url: "http://101.132.39.73:8080/travelapp/trip/list.do",
           params: { page: that.pagenum }
         }).then(function(data) {
           data.data.info.infos.forEach((value, key) => {
@@ -82,7 +82,7 @@ export default {
     let that = this;
     axios({
       methos: "get",
-      url: "http://10.8.157.4:8080//trip/list.do?page=1"
+      url: "http://101.132.39.73:8080/travelapp/trip/list.do?page=1"
     }).then(function(data) {
       that.maxpage = data.data.info.totalPage;
       that.msg = data.data.info.infos;

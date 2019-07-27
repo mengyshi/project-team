@@ -8,16 +8,16 @@
 		 
 		/>
 		<div class="comment">
-			<h2>订单xxxx的评价</h2>
+			<h3>订单452856的评价</h3>
 			<textarea name="" id="" cols="50" rows="8" placeholder="请输入200字以内的评论" v-model="txt"></textarea>
 			<div id="box">
 				<van-button round type="info" >取消</van-button>
 				<van-button  round type="warning" @click="tap()">发表</van-button>
 			</div>
-			<van-card
+			<!-- <van-card
 			  title="订单编号：" 
 			  thumb="https://img.yzcdn.cn/vant/t-thirt.jpg"
-			/>
+			/> -->
 		</div>
 		
 				
@@ -41,7 +41,7 @@
 
     			console.log(this.txt);
     			axios({
-			      url:"http://10.8.157.18:8080/appr/addapprshow.do",
+			      url:"http://101.132.39.73:8080/travelapp/appr/addapprshow.do",
 			      method:"get",
 			      params:{}
 			    }).then((data)=>{

@@ -56,7 +56,7 @@ export default {
     detail(i) {
       // console.log(i);
       axios({
-        url: "http://10.8.157.43:8080//travelLog/findById.do",
+        url: "http://101.132.39.73:8080/travelapp/travelLog/findById.do",
         // url: "http://dvbpr7.natappfree.cc/travelLog/findById.do",
         params: { id: i }
       }).then(data => {
@@ -68,7 +68,7 @@ export default {
     // 收藏操作
     shouC() {
       axios({
-        url: "http://10.8.157.43:8080/collecttion/add.do/uid=1&tid=2"
+        url: "http://101.132.39.73:8080/travelapp/collecttion/add.do/uid=1&tid=2"
         // params:{uid:,tid:}
       }).then(res => {
         console.log(res);
@@ -77,7 +77,7 @@ export default {
   },
   mounted() {
     axios({
-      url: "http://10.8.157.43:8080//travelLog/list.do"
+      url: "http://101.132.39.73:8080/travelapp/travelLog/list.do"
       // url: "http://dvbpr7.natappfree.cc/travelLog/list.do"
     })
       .then(data => {

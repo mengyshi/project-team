@@ -85,7 +85,7 @@ export default {
     getYzm1() {
       // 这个axios请求是判断手机号是首次登录还是再次登录  返回  code 0   code 1
       axios({
-        url: "http://10.8.157.41:8080/user/checkUserTel",
+        url: "http://101.132.39.73:8080/travelapp/user/checkUserTel",
         params: { tel: this.tel }
       }).then(res => {
         console.log(res);
@@ -95,7 +95,7 @@ export default {
         if (this.code == 0) {
           // code为0表示首次登录    请求接口
           axios({
-            url: "http://10.8.157.41:8080/user/sendTelCode",
+            url: "http://101.132.39.73:8080/travelapp/user/sendTelCode",
             data: { tel: this.tel },
             method: "post",
             transformRequest: [
@@ -128,7 +128,7 @@ export default {
             });
         } else {
           axios({
-            url: "http://10.8.157.41:8080/user/sendCode",
+            url: "http://101.132.39.73:8080/travelapp/user/sendCode",
             data: { tel: this.tel },
             method: "post",
             transformRequest: [
@@ -163,7 +163,7 @@ export default {
     login() {
       console.log(11);
       axios({
-        url: "http://10.8.157.41:8080/user//validateTelCode",
+        url: "http://101.132.39.73:8080/travelapp/user//validateTelCode",
         params: { tel: this.tel, code: this.yzm1 }
       }).then(data => {
         console.log(this.tel);
@@ -171,7 +171,7 @@ export default {
         console.log(data.data.code);
         console.log(data);
         if (data.data.code == 1) {
-          this.$router.push("/index");
+          this.$router.push("/register");
         }
       });
     },

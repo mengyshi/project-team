@@ -168,7 +168,7 @@ export default {
     let that = this;
     axios({
       method: "get",
-      url: "http://10.8.157.4:8080//triphotel/list.do?page=1"
+      url: "http://101.132.39.73:8080/travelapp/triphotel/list.do?page=1"
     }).then(function(data) {
       that.maxpage = data.data.info.totalPage;
       that.msg = data.data.info.infos;

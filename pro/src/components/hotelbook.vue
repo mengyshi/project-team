@@ -218,7 +218,7 @@ export default {
     let that = this;
     axios({
       method: "get",
-      url: "http://10.8.157.4:8080//triphotel/query.do",
+      url: "http://101.132.39.73:8080/travelapp/triphotel/query.do",
       params: { id: that.hotelid }
     }).then(function(data) {
       that.msg = data.data.info;

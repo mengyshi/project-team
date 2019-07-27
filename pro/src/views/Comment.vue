@@ -57,7 +57,7 @@ import axios from "axios"
 		},
 		mounted(){
 			axios({
-		      url:"http://10.8.157.18:8080/appr/myapprshow.do",
+		      url:"http://101.132.39.73:8080/travelapp/appr/myapprshow.do",
 		      method:"get",
 		    }).then((data)=>{
 		    	this.lists=data.data.data;
@@ -66,7 +66,7 @@ import axios from "axios"
 		    	console.log(err)
 		    });
 		    axios({
-		      url:"http://10.8.157.18:8080/appr/addapprshow.do",
+		      url:"http://101.132.39.73:8080/travelapp/appr/addapprshow.do",
 		      method:"get",
 		      params:{ordernum:1999999}
 		    }).then((data)=>{

@@ -36,7 +36,7 @@ export default {
     // console.log(this.$route.query.id);
     axios({
       // url: "http://dvbpr7.natappfree.cc/travelLog/findById.do",
-      url: "http://10.8.157.43:8080//travelLog/findById.do",
+      url: "http://101.132.39.73:8080/travelapp/travelLog/findById.do",
       params: { id: this.$route.query.id }
     })
       .then(data => {

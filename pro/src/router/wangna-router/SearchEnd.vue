@@ -102,12 +102,12 @@ export default {
     onSearch() {
       let that = this;
       function getUserAccount() {
-        return axios.get("http://10.8.157.8:8080/hotel/findHotelAll.do", {
+        return axios.get("http://101.132.39.73:8080/travelapp/hotel/findHotelAll.do", {
           params: { address: that.value }
         });
       }
       function getUserPermissions() {
-        return axios.get("http://10.8.157.8:8080/hotel/findHotelAll.do", {
+        return axios.get("http://101.132.39.73:8080/travelapp/hotel/findHotelAll.do", {
           params: { hotelname: that.value }
         });
       }
@@ -132,12 +132,12 @@ export default {
     console.log(this.$route);
     let that = this;
     function getUserAccount() {
-      return axios.get("http://10.8.157.8:8080/hotel/findHotelAll.do", {
+      return axios.get("http://101.132.39.73:8080/travelapp/hotel/findHotelAll.do", {
         params: { address: that.$route.query.text }
       });
     }
     function getUserPermissions() {
-      return axios.get("http://10.8.157.8:8080/hotel/findHotelAll.do", {
+      return axios.get("http://101.132.39.73:8080/travelapp/hotel/findHotelAll.do", {
         params: { hotelname: that.$route.query.text }
       });
     }

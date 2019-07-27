@@ -49,7 +49,7 @@
 	      var area=""+content.province+content.city+content.county;
 	      console.log(area)
 		  axios({
-		      url:"http://10.8.157.18:8080/set/addadds.do",
+		      url:"http://101.132.39.73:8080/travelapp/set/addadds.do",
 		      method:"get",
 		      params:{name:content.name,area:area,phone:content.tel,detailadds:content.addressDetail,areaCode:content.areaCode}
 
