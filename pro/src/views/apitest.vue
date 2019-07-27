@@ -12,6 +12,9 @@
     <van-button type="primary" @click="showpage">测试：旅游攻略分页</van-button>
     <br />
     <van-button type="primary" @click="showfangdong">测试：房东故事分页</van-button>
+    <div v-for="(a, key) in 10" :key="key">
+      <div @click="clicka($event, key)" ref="asd" :asd="key">{{key}}</div>
+    </div>
   </div>
 </template>
 
@@ -27,6 +30,11 @@ export default {
     };
   },
   methods: {
+    clicka(e, key) {
+      console.log(e.target.attributes[0].value);
+      console.log(key);
+      console.log(e.target.getAttribute("asd"));
+    },
     showcomment() {
       // 房东故事列表页  根据page查询对应页面的信息
       axios({

@@ -54,7 +54,6 @@ export default {
   },
   methods: {
     gohotel(e, id) {
-      // console.log(e, id);
       this.$router.push("/cityhotellist");
     },
     // 下拉加载

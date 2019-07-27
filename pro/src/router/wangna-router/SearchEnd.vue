@@ -32,7 +32,6 @@
     <div class="sort-list">
       <p v-show="txt">没有搜索项</p>
       <div v-for="item in list" :key="item.id">
-        
         <van-row type="flex" justify="flex-start" gutter="10">
           <van-col span="12">
             <van-image width="100%" height="100%" src="https://img.yzcdn.cn/vant/cat.jpeg" />
@@ -73,7 +72,7 @@ export default {
       value3: "d",
       value4: "h",
       list: [],
-      txt:false,
+      txt: false,
       option1: [
         { text: "位置区域", value: 0 },
         { text: "郑州", value: 1 },
@@ -103,25 +102,27 @@ export default {
     onSearch() {
       let that = this;
       function getUserAccount() {
-        return axios.get("http://10.8.157.8:8080/hotel/findHotelAll.do",{params:{address:that.value}});
+        return axios.get("http://10.8.157.8:8080/hotel/findHotelAll.do", {
+          params: { address: that.value }
+        });
       }
       function getUserPermissions() {
-        return axios.get("http://10.8.157.8:8080/hotel/findHotelAll.do",{params:{hotelname:that.value}});
+        return axios.get("http://10.8.157.8:8080/hotel/findHotelAll.do", {
+          params: { hotelname: that.value }
+        });
       }
       axios.all([getUserAccount(), getUserPermissions()]).then(
         axios.spread(function(acct, perms) {
           // 两个请求现在都执行完成
-          if(acct.data.info.length!=0){
-            that.list=acct.data.info
-            that.txt=false;
-          }
-          else if(perms.data.info.length!=0){
-            that.list=perms.data.info;
-            that.txt=false;
-          }
-          else{
-            that.list=[]
-            that.txt=true;
+          if (acct.data.info.length != 0) {
+            that.list = acct.data.info;
+            that.txt = false;
+          } else if (perms.data.info.length != 0) {
+            that.list = perms.data.info;
+            that.txt = false;
+          } else {
+            that.list = [];
+            that.txt = true;
           }
         })
       );
@@ -131,28 +132,30 @@ export default {
     console.log(this.$route);
     let that = this;
     function getUserAccount() {
-        return axios.get("http://10.8.157.8:8080/hotel/findHotelAll.do",{params:{address:that.$route.query.text}});
-      }
-      function getUserPermissions() {
-        return axios.get("http://10.8.157.8:8080/hotel/findHotelAll.do",{params:{hotelname:that.$route.query.text}});
-      }
-      axios.all([getUserAccount(), getUserPermissions()]).then(
-        axios.spread(function(acct, perms) {
-          // 两个请求现在都执行完成
-          if(acct.data.info.length!=0){
-            that.list=acct.data.info
-            that.txt=false;
-          }
-          else if(perms.data.info.length!=0){
-            that.list=perms.data.info;
-            that.txt=false;
-          }
-          else{
-            that.list=[]
-            that.txt=true;
-          }
-        })
-      );
+      return axios.get("http://10.8.157.8:8080/hotel/findHotelAll.do", {
+        params: { address: that.$route.query.text }
+      });
+    }
+    function getUserPermissions() {
+      return axios.get("http://10.8.157.8:8080/hotel/findHotelAll.do", {
+        params: { hotelname: that.$route.query.text }
+      });
+    }
+    axios.all([getUserAccount(), getUserPermissions()]).then(
+      axios.spread(function(acct, perms) {
+        // 两个请求现在都执行完成
+        if (acct.data.info.length != 0) {
+          that.list = acct.data.info;
+          that.txt = false;
+        } else if (perms.data.info.length != 0) {
+          that.list = perms.data.info;
+          that.txt = false;
+        } else {
+          that.list = [];
+          that.txt = true;
+        }
+      })
+    );
   }
 };
 </script>
