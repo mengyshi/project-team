@@ -11,7 +11,7 @@
           right-icon="question-o"
           placeholder="请输入用户名"
           @blur="userTest"
-          @click-right-icon="$toast('question')"
+          @click-right-icon="$toast('用户名不能为空')"
         />
         <span v-show="false">此用户名已注册</span>
         <van-field
@@ -23,31 +23,19 @@
           required
         />
       </van-cell-group>
-      <!-- <van-radio-group v-model="radio" id="sex">
-        性别：
-        <van-radio name="男" icon-size="14px">男</van-radio>
-        <van-radio name="女" icon-size="14px">女</van-radio>
-      </van-radio-group>-->
-      <!-- <van-cell-group>
-        <van-field v-model="phone" label="手机号" placeholder="请输入手机号" />
-        <van-field v-model="birthday" label="出生日期" placeholder="请输入出生年月" />
-        <van-field v-model="birthday" label="身份证" placeholder="请输入身份证号" />
-        <van-field v-model="birthday" label="省份" placeholder="请输入所在省份" />
-        <van-field v-model="birthday" label="市区" placeholder="请输入所在市区" />
-        <van-field v-model="birthday" label="邮箱" placeholder="请输入邮箱" />
-      </van-cell-group>-->
     </div>
     <van-button
       v-bind:disable="dis"
       type="primary"
       id="RegisterBtn"
       size="small"
-      v-tap="{methods:registerBtn}"
+      @click="registerBtn()"
     >注册</van-button>
   </div>
 </template>
 <script>
 import axios from "axios";
+import qs from "qs"
 export default {
   name: "Register",
   data() {
@@ -69,22 +57,23 @@ export default {
     userTest() {
       if (!this.username) {
         this.$toast("用户名不能为空");
-      } else {
-        axios({
-          // 用户名不允许重复
-          url: "http://10.8.157.41:8080/user/checkUserName",
-          params: { username: this.username }
-        })
-          .then(data => {
-            console.log(data);
-            if (data.data.code == 1) {
-              this.$toast("此用户名已注册");
-            }
-          })
-          .catch(err => {
-            console.log(err);
-          });
       }
+      // } else {
+      //   axios({
+      //     // 用户名不允许重复
+      //     url: "http://10.8.157.41:8080/user/checkUserName",
+      //     params: { username: this.username }
+      //   })
+      //     .then(data => {
+      //       console.log(data);
+      //       if (data.data.code == 1) {
+      //         this.$toast("此用户名已注册");
+      //       }
+      //     })
+      //     .catch(err => {
+      //       console.log(err);
+      //     });
+      // }
     },
     //密码测试
     pwdTest() {
@@ -98,17 +87,18 @@ export default {
     },
     registerBtn() {
       axios({
-        url: "http://10.8.157.41:8080/user/registerUser",
-        params: { username: this.username, password: this.password }
+        url: "http://106.12.52.107:8081/MeledMall/user/register",
+        method:"post",
+        data:qs.stringify({phonenum: this.username, password: this.password })
       })
         .then(data => {
           console.log(data);
-          if (data.data == "success") {
+          console.log(this.username,this.password);
+          if (data.data.code == 1) {
             this.$router.push("/loginC");
             localStorage.removeItem("userLoginInfo");
           }
-        })
-        .catch(err => {
+        }).catch(err => {
           console.log(err);
         });
     },
@@ -116,7 +106,9 @@ export default {
       this.$router.go(-1);
     }
   },
-  mounted() {}
+  mounted() {
+
+}
 };
 </script>
 <style>

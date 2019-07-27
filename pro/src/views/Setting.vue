@@ -51,8 +51,12 @@ import {Toast} from "vant"
 			tap(){
 				localStorage.removeItem("info");
 				Toast("退出成功！")
+				var _this=this;
+				setTimeout(function out () {
+					_this.$router.go(0);
+				},200)
 
-				this.$router.go(-1);
+				
 
 			}
 		},

@@ -67,7 +67,7 @@ export default {
       } else {
         axios({
           method: "get",
-          url: "http://10.8.157.4:8080//trip/list.do",
+          url: "http://192.168.50.132:8080/trip/list.do",
           params: { page: that.pagenum }
         }).then(function(data) {
           data.data.info.infos.forEach((value, key) => {

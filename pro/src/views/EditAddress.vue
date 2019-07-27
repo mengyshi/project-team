@@ -1,12 +1,10 @@
 <template>
-
 	<div>
 		<van-nav-bar
 		:fixed="true"
 		  title="编辑地址"
 		  left-arrow
-		  @click-left="onClickLeft"
-		 
+		  @click-left="onClickLeft"		 
 		/>
 		<div class="add">
 			<van-address-edit

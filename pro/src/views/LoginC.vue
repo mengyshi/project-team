@@ -61,6 +61,7 @@
 </template>
 <script>
 import axios from "axios";
+import qs from "qs";
 import { mapMutations } from "vuex";
 export default {
   name: "Login",
@@ -90,47 +91,20 @@ export default {
         alert("账号或密码不能为空");
       } else {
         axios({
-          url: "http://10.8.157.41:8080/user/login",
-          params: {
-            username: this.username,
-            password: this.password
-          }
+          url: "http://106.12.52.107:8081/MeledMall/user/login",
+          method:"post",
+          data:qs.stringify({phonenum:this.username,password:this.password}),
         })
           .then(data => {
             console.log(data);
+            console.log(this.username);
             if (data.data.code == 1) {
-               var obj={username:data.data.info};
-                console.log(obj)
-              if(localStorage.getItem("info")){
-                console.log('info存在');
+               var obj={username:data.data.info.phonenum,id:data.data.info.id,sex:"",birthday:""};
+                console.log(obj);
                 localStorage.setItem("info",JSON.stringify(obj))
-              }else{
-                localStorage.setItem("info",JSON.stringify(obj))
-              }
               this.$router.push({ path: "/index" });
             } else {
               this.$toast("账号或密码输入错误");
-            }
-            let arr = data.list;
-            console.log(arr);
-            let i;
-            console.log(this.loginForm.username);
-            console.log(this.loginForm.password);
-            var flag = false;
-            for (i in arr) {
-              let username = arr[i].username;
-              let password = arr[i].password;
-              if (this.username == username && this.password == password) {
-                this.$router.push("/index");
-                console.log("登录成功");
-
-                flag = true;
-                return;
-              }
-            }
-            if (!flag) {
-              // alert("账号或密码错误");
-              console.log("账号或密码错误");
             }
           })
           .catch(error => {

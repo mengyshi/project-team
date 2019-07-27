@@ -1,32 +1,89 @@
 <template>
 	<div>
 		<van-panel title="邮箱" desc="请在下面输入您的邮箱" style="font-size:1rem">
-		  <div class="ipt"><input type="text"></div>
+		   <div class="ipt"><input type="text" v-model="num" @touchstart.stop="show = true">
+				<van-number-keyboard
+				  :show="show"
+				  extra-key="."
+				  close-button-text="完成"
+				  @blur="show = false"
+				  @input="onInput"
+				  @delete="onDelete"
+				  @close="onClose"
+				/>
+			</div>
 		  
 		</van-panel>	
 	</div>
 </template>
 <script>
+import axios from "axios"
+	import qs from "qs"
 	export default{
+		data(){
+			return{
+				num:"",
+				show: true,
+				maxlength:11,
+				 phone:null,
+				 address:null,
+				 postcode:null,
+
+			}
+		},
 		methods:{
-			onConfirm(data){
-				console.log(data.getFullYear()+"-"+(data.getMonth()-1+2)+"-"+data.getDate());
-				this.val=data.getFullYear()+"-"+(data.getMonth()-1+2)+"-"+data.getDate();
-				var username=this.$route.query.username;
+		   onInput(value) {
+	    	this.num+=value;
+	     	console.log(value)
+		    },
+		    onDelete() {
+		      	this.num=this.num.slice(0,this.num.length-1)
+		    },
+		    onClose(){
+		    	console.log("完成");
+		    	var id=this.$route.query.id;
 				axios({
-					url:"http://10.8.157.18:8080/set/uptaper.do",
-					method:"get",
-					params:{id:2,place:this.val},
-				}).then((data)=>{
-					console.log(data);
-				}).catch(data=>{
-					console.log(data)
-				})
-			},
+			      url:"http://106.12.52.107:8081/MeledMall/user/editMsg",
+			      method:"post",
+			      data:qs.stringify({id:id,phone:this.phone,area:this.area,address:this.address,postcode:this.num}),
+			    }).then((data)=>{
+			    	console.log(data);
+
+			    })
+		    },
 			cancel(){
 				this.$router.go(-1)
 			}
+		},
+		mounted(){
+			var id=this.$route.query.id;
+			axios({
+		      url:"http://106.12.52.107:8081/MeledMall/user/mine",
+		      method:"post",
+		      data:qs.stringify({id:id}),
+
+		    }).then((data)=>{
+		    	//console.log(data)
+		    	if(data.data.info.user.area!=null){
+		    		this.area=data.data.info.user.area;
+		    	}
+		    	if(data.data.info.user.address!=null){
+		    		this.address=data.data.info.user.address;
+		    	}
+		    	if(data.data.info.user.phone!=null){
+		    		this.phone=data.data.info.user.phone;
+		    	}
+
+		    	// 
+		    	// this.area=data.data.info.user.area;
+		    	// this.val=data.data.info.user.address;
+		    	// this.postcode=data.data.info.user.postcode;
+		    	console.log(this.area,this.address,this.num,this.phone)
+
+		    })
+
 		}
+
 
 	}
 </script>

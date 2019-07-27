@@ -44,7 +44,6 @@
 	  	 onClickLeft(){
 	    	this.$router.go(-1);
 	    },
-
 	    onSave(content) {
 	      console.log(content.addressDetail,content.tel,content.city,content.county,content.name,content.province);
 	      var area=""+content.province+content.city+content.county;

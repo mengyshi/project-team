@@ -3,8 +3,8 @@
 		<div id="main-left">
 			<h2>{{username}}</h2>
 			<div>
-				<van-icon name="sign"/> 
-	  			<span>高级会员</span>
+				<van-icon name="edit"/> 
+	  			<span  @click="tap1()">个人资料</span>
 			</div>
 	  		
 		</div>
@@ -19,19 +19,21 @@
 export default{
 	data(){
 		return{
+			id:"",
 			username:"",
 		}
 		
 	},
 	mounted(){
-		var username = JSON.parse(localStorage.getItem("info")).username;
-		this.username=username;
-		console.log(username);
+		var id = JSON.parse(localStorage.getItem("info")).id;
+		this.username = JSON.parse(localStorage.getItem("info")).username;
+		this.id=id;
+		console.log(id);
 
 	},
 	methods:{
 		tap1(){
-	  		this.$router.push({path:"/personaldata",query:{username:this.username}})
+	  		this.$router.push({path:"/personaldata",query:{id:this.id}})
 	  	},
 	}
 
@@ -42,7 +44,7 @@ export default{
 	#header{
 		width:100%;
 		height: 11rem;
-		background:url("http://img2.imgtn.bdimg.com/it/u=18565717,1492017595&fm=26&gp=0.jpg");
+		background:url("http://img1.imgtn.bdimg.com/it/u=2199796161,707287990&fm=26&gp=0.jpg");
 
 	}
 	section{
@@ -74,7 +76,7 @@ export default{
 		height:5rem;
 		background: #0ff;
 		border-radius: 50%;
-		background:url("http://img3.imgtn.bdimg.com/it/u=4171914132,1957317625&fm=26&gp=0.jpg") no-repeat;
+		background:url("http://img1.imgtn.bdimg.com/it/u=162252298,3769764201&fm=26&gp=0.jpg") no-repeat;
 		background-size:5rem 5rem;
 	}	
 </style>

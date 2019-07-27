@@ -6,6 +6,7 @@
 		  title="个人资料"
 		  left-arrow
 		  @click-left="onClickLeft()"
+
 	/>
 	<div id="main">
 
@@ -14,7 +15,7 @@
 		  round
 		  width="8rem"
 		  height="8rem"
-		  :src="info.img"
+		  src="http://img1.imgtn.bdimg.com/it/u=162252298,3769764201&fm=26&gp=0.jpg"
 		/>
 		</span>
 		<span @click="shows()">修改头像</span>
@@ -26,7 +27,7 @@
 		>
 		<div class="photo">
 				<span class="touxiang">
-				  <img :src="info.img" style="width:8rem;height:8rem;border-radius:50%"/>
+				  <img src="http://img1.imgtn.bdimg.com/it/u=162252298,3769764201&fm=26&gp=0.jpg" style="width:8rem;height:8rem;border-radius:50%"/>
 				  
 				</span>
 				 <div style="width:100%; text-align:center">
@@ -49,42 +50,35 @@
 	<div id="content">
 			
 				<van-panel title="昵称" >
-				 <div class="contents"><em>username:{{info.username}}</em><span @click="tap('username')">&gt;</span></div>
+				 <div class="contents"><em>{{info.phonenum}}</em><span @click="tap('username')"></span></div>
 
 				</van-panel>
 			
 				<van-panel title="性别">
 
-					<div class="contents"><em>sex:{{info.sex}}</em><span @click="tap('sex')">&gt;</span></div>
+					<div class="contents"><em>{{sex}}</em><span><van-icon name="edit" @click="tap('sex')"/></span> </div>
 				</van-panel>
 
 				<van-panel title="常用手机">
-					<div class="contents"><em>tel:{{info.tel}}</em><span @click="tap('telphone')">&gt;</span></div>
+					<div class="contents"><em>{{phone}}</em><span ><van-icon name="edit" @click="tap('telphone')"/></span></div>
 				</van-panel>
 			
 				<van-panel title="出生日期">
+					<div class="contents"><em>{{birthday}}</em><span ><van-icon name="edit" @click="tap('birthday')"/></span></div>
 
-					<div class="contents"><em>birthday:{{info.birthday}}</em><span @click="tap('birthday')">&gt;</span></div>
-
-				</van-panel>
-			
-				<van-panel title="身份证号码">
-					<div class="contents"><em>411**************X</em><span @click="tap('idcard')">&gt;</span></div>
 				</van-panel>
 			
 				<van-panel title="故乡">
-					<div class="contents"><em>hometown:{{info.place}}</em><span @click="tap('hometown')">&gt;</span></div>
+					<div class="contents"><em>{{area}}</em><span ><van-icon name="edit" @click="tap('hometown')"/></span></div>
 				</van-panel>
 			
 				<van-panel title="所在城市">
-					<div class="contents"><em>city:{{info.city}}</em><span @click="tap('city')">&gt;</span></div>
+					<div class="contents"><em>{{address}}</em><span><van-icon name="edit"  @click="tap('city')"/></span></div>
 					
 				</van-panel>
 			
 				<van-panel title="邮箱地址">
-					<div class="contents">eamil:<em>{{info.email}}</em><span @click="tap('mail')">&gt;</span></div>
-
-					
+					<div class="contents"><em>{{postcode}}</em><span><van-icon name="edit"  @click="tap('mail')"/></span></div>
 				</van-panel>
 				
 		</div>
@@ -95,12 +89,22 @@
 
 <script>
 
-import axios from "axios"
+import axios from "axios";
+import qs from "qs";
+import {Toast} from "vant"
 	export default{
 		data(){
 			return{
 				info:"",
-				show: false
+				
+				show: false,
+				phonenum:"sss",
+				sex:"性别",
+				birthday:"出生日期",
+				area:"所在地",
+				address:"故乡",
+				postcode:"邮编",
+				phone:"手机号"
 
 			}
 		},
@@ -110,35 +114,63 @@ import axios from "axios"
 			},
 			
 			tap(nextpath){
-				var username=this.$route.query.username;
-				this.$router.push({path:"/"+nextpath,query:{username:username}});
+
+				var id=this.$route.query.id;
+				this.$router.push({path:"/"+nextpath,query:{id:id}});
 
 			},
 			shows(){
 				this.show=true;
 			},
 			updatephoto(){
-				this.$router.push("/uploderimg")
+				Toast("系统维护中，暂不支持此功能！")
+				
 			}
 		},
 		mounted(){
-			var username=this.$route.query.username;
-			console.log(username)
+			var id=this.$route.query.id;
+			console.log(id);
+
 
 			axios({
-		      url:"http://10.8.157.18:8080/set/personage.do",
-		      method:"get",
-		      params:{username:username}
+		      url:"http://106.12.52.107:8081/MeledMall/user/mine",
+		      method:"post",
+		      data:qs.stringify({id:id}),
 
 		    }).then((data)=>{
-		      var lists=data.data.data[0];
-		      console.log(data);
-		      this.info=lists;
+		    	// console.log(data)
+		    	console.log(data.data.info.user)
+		       var lists=data.data.info.user;
+		    	this.info=lists;
+		    	//对象遍历
+		    	var arr=["phonenum",'area','address','postcode','phone'];
+		    	for(let key in lists){
+				   	console.log(key + '---' + lists[key])
+				   	if(lists[key]!=null){
+		   				if(arr.indexOf(key)!=-1){
+		   					arr[arr.indexOf(key)]=lists[key];		   				}
+		   			}
+				}
+				console.log(arr);
+				this.area=arr[1];
+				this.address=arr[2];
+				this.postcode=arr[3];
+				this.phone=arr[4];		   
 		      
 		  })
-			}
-
+		    var sex=JSON.parse(localStorage.getItem("info")).sex;
+		    var birthday=JSON.parse(localStorage.getItem("info")).birthday;
+		    console.log("sex:",sex,birthday)
+		    if(sex!=""){
+		    	this.sex=sex
+		    }
+		    if(birthday!=""){
+		    	this.birthday=birthday
+		    }
+		}
 	}
+
+	
 
 	
 </script>
@@ -157,7 +189,7 @@ import axios from "axios"
 		justify-content: center;
 		align-items: center;
 		margin-top:3rem;
-		background:url("http://img0.imgtn.bdimg.com/it/u=3656656606,232096928&fm=26&gp=0.jpg");
+		background:url("http://img1.imgtn.bdimg.com/it/u=2199796161,707287990&fm=26&gp=0.jpg");
 		background-size:100% 11rem;
 		flex-direction: column;
 

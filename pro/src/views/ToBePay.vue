@@ -24,8 +24,9 @@
 	</div>
 
 </template>
+
 <script>
-	
+	import {Toast} from "vant"
 	export default{
 		data(){
 			return{
@@ -37,7 +38,12 @@
 		      this.$router.go(-1)
 		    },
 		    onClickRight() {
-		      Toast('按钮');
+		    	setTimeout(function arr () {
+		    		Toast('刷新成功');
+		    	},200)
+		    	
+		    	
+		      
 		    }
 
 		}

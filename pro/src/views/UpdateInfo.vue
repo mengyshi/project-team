@@ -15,7 +15,8 @@
 </template>
 <script>
  import axios from "axios"
- import city from "./personalInfo/City.vue"
+ import city from "./personalInfo/City.vue";
+ import {Toast} from "vant"
  
 
 	export default{
@@ -29,12 +30,9 @@
 		methods:{
 			onClickLeft(){
 				this.$router.go(-1);
-
 			},
-
 			onClickRight(){
-				console.log("保存成功")
-				
+				Toast("保存成功")				
 			}
 		},
 		

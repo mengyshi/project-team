@@ -10,28 +10,43 @@
 <script>
 	import area from "../../assets/area";
 	import axios from "axios"
+	import qs from "qs"
 	export default{
 		data(){
 			return{
 				 areaList:area,
 				 val:"",
-				 info:{}
-
-
+				 info:{},
+				 phone:null,
+				 area:null,
+				 postcode:null,
 			}
 		},
 		methods:{
 			confirm(data){
 				//console.log(this.val)
 				this.val=data[0].name;
-				
 				console.log(this.val)
 				this.info.city=this.val;
-				console.log(this.info)
+				console.log(this.info);
+
+				//$.ajax({
+			// 	url: 'http://106.12.52.107:8081/MeledMall/user/editMsg',
+			// 	type: 'post',
+			// 	dataType: 'json',
+			// 	data: {phone:" 123456",area:"河南省郑州市",address:"二七区",postcode:"176000",id:1},
+			// 	success:function(data){
+			// 		console.log(data)
+			// 	}
+			// })
+			// 
+			
+			//修改个人信息
+			var id=this.$route.query.id;
 				axios({
-			      url:"http://10.8.157.18:8080/set/uptaper.do",
-			      method:"get",
-			      params:{id:this.info.id,city:this.val},
+			      url:"http://106.12.52.107:8081/MeledMall/user/editMsg",
+			      method:"post",
+			      data:qs.stringify({id:id,phone:"15037663232",area:"上海",address:this.val,postcode:"476200"}),
 			    }).then((data)=>{
 			    	console.log(data);
 
@@ -40,21 +55,31 @@
 
 		},
 		mounted(){
-			
-			var username=this.$route.query.username;
+			var id=this.$route.query.id;
 			axios({
-		      url:"http://10.8.157.18:8080/set/personage.do",
-		      method:"get",
-		      params:{username:username}
+		      url:"http://106.12.52.107:8081/MeledMall/user/mine",
+		      method:"post",
+		      data:qs.stringify({id:id}),
+
 		    }).then((data)=>{
-		    console.log(data)
-		      var lists=data.data.data[0];
-		      //console.log(data);
-		      this.info=lists;
-		      console.log(this.info)
-		  }).catch(err=>{
-		  	console.log(err)
-		  })
+		    	//console.log(data)
+		    	if(data.data.info.user.phone!=null){
+		    		this.phone=data.data.info.user.phone;
+		    	}
+		    	if(data.data.info.user.area!=null){
+		    		this.area=data.data.info.user.area;
+		    	}
+		    	if(data.data.info.user.postcode!=null){
+		    		this.postcode=data.data.info.user.postcode;
+		    	}
+
+		    	// 
+		    	// this.area=data.data.info.user.area;
+		    	// this.val=data.data.info.user.address;
+		    	// this.postcode=data.data.info.user.postcode;
+		    	console.log(this.phone,this.area,this.val,this.postcode)
+
+		    })
 
 		}
 	}

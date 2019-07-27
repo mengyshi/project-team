@@ -99,7 +99,7 @@ export default {
     let that = this;
     axios({
       method: "get",
-      url: "http://10.8.157.4:8080//travel/list.do?page=1"
+      url: "http://192.168.50.132:8080//travel/list.do?page=1"
     }).then(function(data) {
       // console.log(data.data.info);
       that.maxpage = data.data.info.totalPage;
